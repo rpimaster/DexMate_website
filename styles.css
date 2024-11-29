@@ -1,0 +1,468 @@
+/* Global Styles */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+strong {
+    display: inline-block;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    font-size: 20px;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+/* Base Styles for Header */
+header {
+    background: #333;
+    color: #fff;
+    padding: 10px 0;
+    border-bottom: #4CAF50 3px solid;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+nav {
+    position: relative;
+    z-index: 1000; /* Bring the nav to the front */
+}
+
+nav ul.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul.nav-links li {
+    margin-left: 20px;
+}
+
+nav ul.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1em;
+}
+
+.important-warning, .safety-warning {
+    background-color: #ffe5e5;
+    border: 1px solid #ffb3b3;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+}
+
+.important-warning h2, .safety-warning h2 {
+    color: #d9534f;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.important-warning ul, .safety-warning ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.important-warning ul li, .safety-warning ul li {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.important-warning p, .safety-warning p {
+    font-size: 16px;
+    color: #333;
+    margin: 10px 0;
+}
+
+.important-warning p strong {
+    font-size: 16px; /* Adjust as needed */
+    color: #333; /* Optional: ensure readability */
+}
+
+.safety-warning {
+    background-color: #ffe5e5;
+    border: 1px solid #ffb3b3;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+}
+
+.safety-warning h2 {
+    color: #d9534f;
+    font-size: 24px;
+}
+
+.safety-warning ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.safety-warning ul li {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Hamburger Menu Styles */
+.hamburger {
+    display: none;
+    font-size: 2em;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+.hamburger:focus {
+    outline: none;
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block; /* Ensure the hamburger is visible */
+    }
+
+    nav ul.nav-links {
+        display: none; /* Hide links by default */
+        flex-direction: column;
+        background: #333; /* Mobile background color */
+        text-align: center;
+    }
+
+    nav ul.nav-links.nav-active {
+        display: flex; /* Display when active */
+    }
+
+    nav ul.nav-links a {
+        padding: 10px 0;
+        color: #fff;
+        text-decoration: none;
+        font-size: 1.2em; /* Adjust for mobile */
+    }
+}
+
+/* Fix for nav-active class */
+.nav-active {
+    display: flex !important;
+    flex-direction: column !important;
+    background: #333 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 1001 !important;
+}
+
+.nav-active a {
+    color: #fff !important; /* Ensure the text color is visible */
+    padding: 10px 15px;
+    display: block; /* Ensure links occupy full width */
+}
+
+/* Hero Section */
+.hero {
+    background: #4CAF50;
+    color: #fff;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.hero .btn {
+    display: inline-block;
+    margin: 20px 10px;
+    padding: 10px 20px;
+    background: #fff;
+    color: #333;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.hero .btn.primary {
+    background: #333;
+    color: #fff;
+}
+
+.hero .btn.secondary {
+    background: #4CAF50;
+    color: #fff;
+    border: 1px solid #fff;
+}
+
+.hero .btn:hover {
+    opacity: 0.8;
+}
+
+/* Introduction Section */
+.introduction {
+    padding: 30px 0;
+    background: #fff;
+    text-align: center;
+}
+
+.introduction h2 {
+    margin-bottom: 20px;
+}
+
+.introduction p {
+    font-size: 18px;
+    color: #777;
+}
+
+/* Features Section */
+.features {
+    padding: 30px 0;
+    background: #f4f4f4;
+}
+
+.features h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.feature-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.feature-item {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ddd;
+    margin: 10px;
+}
+
+.feature-item i {
+    font-size: 3em;
+    margin-bottom: 10px;
+    color: #4CAF50;
+}
+
+.feature-item h3 {
+    margin-bottom: 10px;
+}
+
+.feature-item p {
+    color: #777;
+}
+
+/* How It Works Section */
+.how-it-works {
+    padding: 30px 0;
+    background: #fff;
+}
+
+.how-it-works h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.steps {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.step {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ddd;
+    margin: 10px;
+}
+
+.step h3 {
+    margin-bottom: 10px;
+}
+
+.step p {
+    color: #777;
+}
+
+/* Testimonials Section */
+.testimonials {
+    padding: 30px 0;
+    background: #f4f4f4;
+}
+
+.testimonials h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.testimonial-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.testimonial-item {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ddd;
+    margin: 10px;
+}
+
+.testimonial-item p {
+    font-style: italic;
+    color: #777;
+}
+
+.testimonial-item cite {
+    display: block;
+    margin-top: 10px;
+    color: #333;
+}
+
+/* Support Section */
+.support {
+    padding: 30px 0;
+    background: #fff;
+    text-align: center;
+}
+
+.support h2 {
+    margin-bottom: 20px;
+}
+
+.support p {
+    font-size: 18px;
+    color: #777;
+}
+
+/* Q&A Section */
+.faq {
+    padding: 40px 0;
+    background-color: #f9f9f9;
+}
+
+.faq h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.faq-item {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.faq-item h3 {
+    font-size: 20px;
+    color: #333;
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 0;
+}
+
+.faq-item h3::after {
+    content: '\f078'; /* FontAwesome down arrow icon */
+    font-family: "Font Awesome 6 Free"; /* Add FontAwesome font-family */
+    font-weight: 900; /* Solid style */
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active h3::after {
+    transform: translateY(-50%) rotate(-180deg); /* Rotate arrow up */
+}
+
+.faq-answer {
+    display: none;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #555;
+    line-height: 1.5;
+}
+
+.faq-item.active .faq-answer {
+    display: block;
+}
+
+/* Footer */
+footer {
+    background: #333;
+    color: #fff;
+    padding: 30px 0;
+    text-align: center;
+}
+
+footer .footer-nav ul {
+    padding: 0;
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+footer .footer-nav ul li {
+    display: inline;
+    padding: 0 10px;
+}
+
+footer .footer-nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer .social-icons a {
+    margin: 0 10px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5em;
+}
+
+footer .footer-bottom p {
+    margin-top: 10px;
+}
+
+footer .designer {
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+    margin: 0 5px;
+}
+
+/* Media Queries */
+@media (max-width: 700px) {
+    header nav {
+        float: none;
+        text-align: center;
+        margin-top: 20px;
+    }
+    .features .feature-list, .how-it-works .steps, .testimonials .testimonial-list {
+        flex-direction: column;
+    }
+    .features .feature-item, .how-it-works .step, .testimonials .testimonial-item {
+        margin: 10px 0;
+    }
+}

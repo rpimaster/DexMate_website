@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/logo_ico.ico">
+    <link rel="stylesheet" href="/download.css">
+    <link rel="stylesheet" href="/developers.html">
+    <link rel="stylesheet" href="/download.html">
+    <link rel="stylesheet" href="/support.html">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>DexMate - Download</title>
+    <style>
+        /* Custom Popup Styles */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 0.3s;
+            z-index: 9999;
+        }
+
+        .popup {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .popup-header {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .popup-content {
+            margin-bottom: 20px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .popup-buttons {
+            text-align: center;
+        }
+
+        .popup-buttons button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .popup-buttons .cancel {
+            background: #f44336;
+            color: white;
+        }
+
+        .popup-buttons .cancel:hover {
+            background: #d32f2f;
+            transform: translateY(-2px);
+        }
+
+        .popup-buttons .proceed {
+            background: #007BFF;
+            color: white;
+        }
+
+        .popup-buttons .proceed:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .popup-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>DexMate</h1>
+            <nav>
+                <button class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="download.html">Download</a></li>
+                    <li><a href="setup.html">Setup Guide</a></li>
+                    <li><a href="developers.html">Developers</a></li>
+                    <li><a href="support.html">Support</a></li>
+                    <li><a href="license.html">License</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>            
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <h2>Download DexMate</h2>
+            <p>Please select your location, preferred measurement units, and operating system to download the correct version of DexMate.</p>
+
+            <form id="downloadForm">
+                <label for="location">Location:</label>
+                <select id="location" name="location" required>
+                    <option value="">Select your location</option>
+                    <option value="us">Inside US</option>
+                    <option value="non-us">Outside US</option>
+                </select>
+
+                <label for="units">Measurement Units:</label>
+                <select id="units" name="units" required>
+                    <option value="">Select measurement units</option>
+                    <option value="mmol">mmol/L</option>
+                    <option value="mgdl">mg/dL</option>
+                </select>
+
+                <label for="os">Operating System:</label>
+                <select id="os" name="os" required>
+                    <option value="">Select your OS</option>
+                    <option value="mac">Mac</option>
+                    <option value="windows">Windows</option>
+                    <option value="linux">Linux</option>
+                </select>
+
+                <button type="button" onclick="showPopup()">Download</button>
+            </form>
+        </div>
+        <div class="content-wrapper">
+            <!-- Heading -->
+            <div class="headline">Now Available:</div>
+            <div class="sub-headline">The Visual Studio Code Extension for DexMate</div>
+    
+            <!-- Visual Studio Code Button -->
+            <a href="https://marketplace.visualstudio.com/" class="vscode-download-btn" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg" alt="VS Code Logo">
+                Download from VS Code Marketplace
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="download.html">Download</a></li>
+                    <li><a href="setup.html">Setup Guide</a></li>
+                    <li><a href="developers.html">Developers</a></li>
+                    <li><a href="support.html">Support</a></li>
+                    <li><a href="license.html">License</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li> <!-- New Link -->
+                    <li><a href="terms.html">Terms & Conditions</a></li> <!-- New Link -->
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright &copy; 2024; Designed by <span class="designer">rpimaster</span></p>
+                <p>This project is licensed under the MIT License - see the <a href="license.html">LICENSE</a> file for details.</p>
+                <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms & Conditions</a></p> <!-- Additional Line -->
+            </div>
+        </div>
+    </footer>    
+
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup">
+            <div class="popup-header">Warning</div>
+            <div class="popup-content">
+                You are downloading and using this program at your own risk. We do not take any responsibility for any data breaches, damages, or other issues that may arise from using this software. Do not make any health decisions based on this app. Always consult with your diabetes doctor for medical advice. This software is provided "as is," without warranty of any kind, express or implied. We disclaim all liability for any indirect, incidental, or consequential damages arising from the use of this software. By proceeding, you agree to indemnify and hold us harmless from any claims or damages. Do you wish to proceed?
+            </div>
+            <div class="popup-buttons">
+                <button class="cancel" onclick="closePopup()">Cancel</button>
+                <button class="proceed" onclick="proceedDownload()">Proceed</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPopup() {
+            document.getElementById('popupOverlay').classList.add('active');
+        }
+
+        function closePopup() {
+            document.getElementById('popupOverlay').classList.remove('active');
+        }
+
+        function proceedDownload() {
+            closePopup();
+            getDownloadLink();
+        }
+
+        function getDownloadLink() {
+            var location = document.getElementById('location').value;
+            var units = document.getElementById('units').value;
+            var os = document.getElementById('os').value;
+
+            if (!location || !units || !os) {
+                alert('Please select your location, measurement units, and operating system.');
+                return;
+            }
+
+            var link = '';
+
+            if (location === 'us') {
+                if (units === 'mmol') {
+                    if (os === 'mac') {
+                        link = 'Zip/MacOS/DexMate_US_mmol';
+                    } else if (os === 'windows') {
+                        link = 'Zip/Windows/DexMate_mmol_us.exe';
+                    } else if (os === 'linux') {
+                        link = 'Zip/Linux/DexMate_US_mmol_Linux.zip';
+                    }
+                } else if (units === 'mgdl') {
+                    if (os === 'mac') {
+                        link = 'Zip/MacOS/DexMate_US_mgdl';
+                    } else if (os === 'windows') {
+                        link = 'Zip/Windows/DexMate_mgdl_us.exe';
+                    } else if (os === 'linux') {
+                        link = 'Zip/Linux/DexMate_US_mgdl_Linux.zip';
+                    }
+                }
+            } else if (location === 'non-us') {
+                if (units === 'mmol') {
+                    if (os === 'mac') {
+                        link = 'Zip/MacOS/DexMate_OUS_mmol';
+                    } else if (os === 'windows') {
+                        link = 'Zip/Windows/DexMate_mmol.exe';
+                    } else if (os === 'linux') {
+                        link = 'Zip/Linux/DexMate_OUS_mmol_Linux.zip';
+                    }
+                } else if (units === 'mgdl') {
+                    if (os === 'mac') {
+                        link = 'Zip/MacOS/DexMate_OUS_mgdl';
+                    } else if (os === 'windows') {
+                        link = 'Zip/Windows/DexMate_mgdl.exe';
+                    } else if (os === 'linux') {
+                        link = 'Zip/Linux/DexMate_OUS_mgdl_Linux.zip';
+                    }
+                }
+            }
+
+            startDownload(link);
+        }
+
+        function startDownload(link) {
+            var hiddenLink = document.createElement('a');
+            hiddenLink.href = link;
+            hiddenLink.download = '';
+            document.body.appendChild(hiddenLink);
+            hiddenLink.click();
+            document.body.removeChild(hiddenLink);
+        }
+    </script>
+    <script>
+        document.querySelector('#hamburger').addEventListener('click', function() {
+            document.querySelector('ul.nav-links').classList.toggle('nav-active');
+        });
+    </script>
+</body>
+</html>

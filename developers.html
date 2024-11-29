@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/logo_ico.ico">
+    <link rel="stylesheet" href="/developers.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>DexMate - Developers</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>DexMate</h1>
+            <nav>
+                <button class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="download.html">Download</a></li>
+                    <li><a href="setup.html">Setup Guide</a></li>
+                    <li><a href="developers.html">Developers</a></li>
+                    <li><a href="support.html">Support</a></li>
+                    <li><a href="license.html">License</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>            
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Are you a developer and like this project?</h1>
+        <h2>Do you want to help make it better?</h2>
+        <h3>You can find the code here:</h3>
+        <button onclick="location.href='https://youtube.com'">Give me the code!</button>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="download.html">Download</a></li>
+                    <li><a href="setup.html">Setup Guide</a></li>
+                    <li><a href="developers.html">Developers</a></li>
+                    <li><a href="support.html">Support</a></li>
+                    <li><a href="license.html">License</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li> <!-- New Link -->
+                    <li><a href="terms.html">Terms & Conditions</a></li> <!-- New Link -->
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright &copy; 2024; Designed by <span class="designer">rpimaster</span></p>
+                <p>This project is licensed under the MIT License - see the <a href="license.html">LICENSE</a> file for details.</p>
+                <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms & Conditions</a></p> <!-- Additional Line -->
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        document.querySelector('#hamburger').addEventListener('click', function() {
+            document.querySelector('ul.nav-links').classList.toggle('nav-active');
+        });
+    </script>
+</body>
+</html>
