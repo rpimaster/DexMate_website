@@ -81,6 +81,14 @@
                     </div>
         </section>
 
+        <!-- Popup Modal -->
+        <div id="image-popup" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <img id="popup-image" src="" alt="Full View">
+            </div>
+        </div>
+
         <!-- Features Section -->
         <section class="features">
             <div class="container">
@@ -317,14 +325,23 @@
         });
         document.addEventListener('DOMContentLoaded', () => {
             const slides = document.querySelectorAll('.slide img');
+            const popup = document.getElementById('image-popup');
+            const popupImage = document.getElementById('popup-image');
+            const closeBtn = document.querySelector('.close');
 
             slides.forEach(img => {
                 img.addEventListener('click', () => {
-                    const src = img.src;
-                    
-                    // Open image in new tab to maximize
-                    window.open(src, '_blank');
+                    popupImage.src = img.src; // Set the src of the popup image to the clicked image
+                    popup.style.display = 'block'; // Show the popup
                 });
+            });
+
+            closeBtn.addEventListener('click', () => {
+                popup.style.display = 'none'; // Close the popup
+            });
+
+            popup.addEventListener('click', () => {
+                popup.style.display = 'none'; // Close popup when clicking outside
             });
         });
     </script>

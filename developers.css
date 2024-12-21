@@ -105,6 +105,12 @@ nav ul.nav-links a {
         text-decoration: none;
         font-size: 1.2em; /* Adjust for mobile */
     }
+
+    button {
+        display: block;
+        width: 100%; /* Full width for mobile */
+        margin-top: 20px;
+    }
 }
 
 /* Fix for nav-active class */
