@@ -1,7 +1,7 @@
 /* Global Styles */
 * {
-    padding: 0;
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
@@ -10,28 +10,26 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 100vh;
+    flex: 1;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
-/* Container */
-.container {
-    width: 80%;
-    margin: auto;
-    overflow: hidden;
-}
-
-/* Base Styles for Header */
+/* Header */
 header {
     background: #333;
     color: #fff;
     padding: 10px 0;
-    border-bottom: #4CAF50 3px solid;
+    border-bottom: 3px solid #4CAF50;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure header stays above other elements */
 }
 
 header .container {
@@ -46,11 +44,7 @@ header h1 {
     font-size: 1.5em;
 }
 
-nav {
-    position: relative;
-    z-index: 1000; /* Bring the nav to the front */
-}
-
+/* Navigation */
 nav ul.nav-links {
     list-style: none;
     margin: 0;
@@ -58,18 +52,21 @@ nav ul.nav-links {
     display: flex;
 }
 
-nav ul.nav-links li {
-    margin-left: 20px;
-}
-
+/* Hamburger Menu Link Styles */
 nav ul.nav-links a {
+    padding: 15px 0; /* Increase vertical padding for more space */
     color: #fff;
     text-decoration: none;
-    text-transform: uppercase;
-    font-size: 1em;
+    font-size: 1.2em; /* Adjust for mobile screens */
+    display: block; /* Ensure links occupy full width */
+    text-align: center; /* Center the text in the menu */
 }
 
-/* Hamburger Menu Styles */
+nav ul.nav-links li {
+    margin-bottom: 10px; /* Add space between each list item */
+}
+
+/* Hamburger Menu */
 .hamburger {
     display: none;
     font-size: 2em;
@@ -77,66 +74,116 @@ nav ul.nav-links a {
     border: none;
     color: #fff;
     cursor: pointer;
+    z-index: 1002;
 }
 
 .hamburger:focus {
     outline: none;
 }
 
+/* Main Content */
+main {
+    flex: 1; /* Push footer to the bottom */
+    padding: 120px 20px 100px; /* Add more space around corners */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Header Adjustments */
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0 20px; /* Add padding to create space on the sides */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8em; /* Slightly larger for better visibility */
+    padding-left: 10px; /* Space between "DexMate" title and left edge */
+}
+
+/* Footer */
+footer {
+    background: #333;
+    color: #fff;
+    padding: 20px 10px;
+    text-align: center;
+    width: 100%;
+    margin-top: auto; /* Push footer to bottom */
+}
+
+footer .footer-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px;
+}
+
+footer .footer-nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+footer .footer-nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer .social-icons {
+    margin: 10px 0;
+}
+
+footer .social-icons a {
+    color: #fff;
+    font-size: 1.5em;
+    margin: 0 5px;
+    text-decoration: none;
+}
+
+footer p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+footer .designer {
+    font-size: 0.8em;
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Responsive Adjustments */
 @media (max-width: 768px) {
     .hamburger {
-        display: block; /* Ensure the hamburger is visible */
+        display: block; /* Show hamburger on smaller screens */
     }
 
     nav ul.nav-links {
-        display: none; /* Hide links by default */
+        display: none; /* Hide by default */
         flex-direction: column;
-        background: #333; /* Mobile background color */
+        background: #333;
         text-align: center;
+        width: 100%;
+        position: absolute;
+        top: 100%; /* Below header */
+        left: 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease-in-out;
     }
 
     nav ul.nav-links.nav-active {
-        display: flex; /* Display when active */
-    }
-
-    nav ul.nav-links a {
-        padding: 10px 0;
-        color: #fff;
-        text-decoration: none;
-        font-size: 1.2em; /* Adjust for mobile */
-    }
-
-    button {
-        display: block;
-        width: 100%; /* Full width for mobile */
-        margin-top: 20px;
+        display: flex; /* Show when active */
+        opacity: 1;
+        visibility: visible;
     }
 }
 
-/* Fix for nav-active class */
-.nav-active {
-    display: flex !important;
-    flex-direction: column !important;
-    background: #333 !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    z-index: 1001 !important;
-}
-
-.nav-active a {
-    color: #fff !important; /* Ensure the text color is visible */
-    padding: 10px 15px;
-    display: block; /* Ensure links occupy full width */
-}
-
-h1 {
-    color: #fff;
-}
-
-h2, h3 {
-    color: #666;
-}
-
+/* Button Styles */
 button {
     padding: 12px 20px;
     margin-top: 20px;
@@ -147,53 +194,10 @@ button {
     color: #fff;
     cursor: pointer;
     transition: background 0.3s ease, transform 0.3s ease;
+    display: inline-block;
 }
 
 button:hover {
     background: #0056b3;
     transform: translateY(-2px);
-}
-
-/* Footer */
-footer {
-    background: #333;
-    color: #fff;
-    padding: 30px 0;
-    text-align: center;
-    width: 100%;
-}
-
-footer .footer-nav ul {
-    padding: 0;
-    list-style: none;
-    margin-bottom: 20px;
-}
-
-footer .footer-nav ul li {
-    display: inline;
-    padding: 0 10px;
-}
-
-footer .footer-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-footer .social-icons a {
-    margin: 0 10px;
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.5em;
-}
-
-footer .footer-bottom p {
-    margin-top: 10px;
-}
-
-footer .designer {
-    opacity: 0.7;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 400;
-    margin: 0 5px;
 }
