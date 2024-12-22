@@ -12,6 +12,12 @@
     <title>DexMate</title>
 </head>
 <body>
+     <!-- Cookie Banner -->
+     <div id="cookie-banner">
+        <p>We use cookies to improve your experience. By clicking "Accept", you agree to our use of cookies as described in our <a href="license.html" style="color: #ffc107;">Privacy Policy</a>.</p>
+        <button id="accept-cookies">Accept</button>
+        <button id="decline-cookies">Decline</button>
+    </div>
     <header>
         <div class="container">
             <h1>DexMate</h1>
@@ -345,6 +351,31 @@
 
             popup.addEventListener('click', () => {
                 popup.style.display = 'none'; // Close popup when clicking outside
+            });
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+            const banner = document.getElementById('cookie-banner');
+            const acceptButton = document.getElementById('accept-cookies');
+            const declineButton = document.getElementById('decline-cookies');
+
+            // Check if the cookie choice was already made
+            if (!localStorage.getItem('cookieConsent')) {
+                banner.style.display = 'block';
+            } else if (localStorage.getItem('cookieConsent') === 'declined') {
+                // Redirect to another page if cookies are declined
+                window.location.href = '/cookies-decline.html';
+            }
+
+            // Handle "Accept" click
+            acceptButton.addEventListener('click', () => {
+                localStorage.setItem('cookieConsent', 'accepted');
+                banner.style.display = 'none';
+            });
+
+            // Handle "Decline" click
+            declineButton.addEventListener('click', () => {
+                localStorage.setItem('cookieConsent', 'declined');
+                window.location.href = '/cookies-decline.html'; // Redirect on decline
             });
         });
     </script>

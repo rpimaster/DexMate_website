@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cookies Decline Notice for DexMate">
+    <meta name="author" content="rpimaster">
+    <link rel="icon" type="image/x-icon" href="/logo_ico.ico">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Access Denied - Cookies Required</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f9f9f9;
+        }
+        .container {
+            text-align: center;
+            max-width: 600px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        button {
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cookies Required</h1>
+        <p>We use cookies to enhance your experience and improve our website. Unfortunately, if you do not accept cookies, access to this site cannot be granted.</p>
+        <p>We respect your decision, and you can always revisit us when you're ready to enable cookies.</p>
+        <button id="accept-cookies">Accept Cookies</button>
+    </div>
+    <script>
+        document.getElementById('accept-cookies').addEventListener('click', function () {
+            alert('Cookies accepted! Redirecting...');
+            // Set cookie consent in localStorage
+            localStorage.setItem('cookieConsent', 'accepted');
+            // Redirect to homepage or reload the page
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>
