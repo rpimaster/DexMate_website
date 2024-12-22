@@ -49,7 +49,20 @@ nav ul.nav-links {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: flex;
+    display: flex; /* Flex layout for horizontal alignment */
+}
+
+nav ul.nav-links li {
+    margin: 0 15px; /* Add space between links */
+}
+
+nav ul.nav-links a {
+    padding: 15px 0; /* Increase vertical padding for more space */
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em; /* Adjust for mobile screens */
+    display: block; /* Ensure links occupy full width */
+    text-align: center; /* Center the text in the menu */
 }
 
 /* Hamburger Menu Link Styles */
