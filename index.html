@@ -14,7 +14,7 @@
 <body>
      <!-- Cookie Banner -->
      <div id="cookie-banner">
-        <p>We use cookies to improve your experience. By clicking "Accept", you agree to our use of cookies as described in our <a href="license.html" style="color: #ffc107;">Privacy Policy</a>.</p>
+        <p>We use cookies to improve your experience. By clicking "Accept", you agree to our use of cookies as described in our <a href="./license.html" style="color: #ffc107;">Privacy Policy</a>.</p>
         <button id="accept-cookies">Accept</button>
         <button id="decline-cookies">Decline</button>
     </div>
@@ -363,7 +363,7 @@
                 banner.style.display = 'block';
             } else if (localStorage.getItem('cookieConsent') === 'declined') {
                 // Redirect to another page if cookies are declined
-                window.location.href = '/cookies-decline.html';
+                window.location.href = './cookies-decline.html';
             }
 
             // Handle "Accept" click
