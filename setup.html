@@ -135,20 +135,32 @@
 
                     <div id="step4" class="step">
                         <h3>Step 4: Launch the App</h3>
-                        <p>To run DexMate, open the <strong>Applications</strong> folder, find <code>DexMate.app</code>, and double-click to launch it. If you receive a warning about the app being from an "unidentified developer," follow these steps:</p>
+                        <p>Open the <strong>Terminal</strong> application on your Mac. Then, paste the following commands one by one into the Terminal:</p>
                         <ul>
-                            <li>Right-click (or Control-click) on the <code>DexMate.app</code> file.</li>
-                            <li>Select <strong>Open</strong> from the context menu.</li>
-                            <li>When the warning message appears, click <strong>Open</strong> again to confirm.</li>
+                            <li><code>sudo chown -R $USER /Applications/DexMate_mmol/DexMate.app</code></li>
+                            <li><code>sudo chmod -R 755 /Applications/DexMate_mmol/DexMate.app</code></li>
+                            <li><code>sudo xattr -rd com.apple.quarantine /Applications/DexMate_mmol/DexMate.app</code></li>
                         </ul>
-                        <p>Once you confirm, the app will launch normally, and you won't see the warning again for future use.</p>
-                        <p>Now you can enjoy the app!</p>
-                
-                        <!-- <div class="image-row">
-                            <img src="Pictures/MacOS/Shortcut1.png" alt="Drag to Applications">
-                            <img src="Pictures/MacOS/Shortcut2.png" alt="App running">
-                        </div> -->
-                    </div>
+                        <p><strong>Note:</strong> Adjust the file path based on your version of the DexMate app. For example, replace <code>/Applications/DexMate_mmol/DexMate.app</code> with <code>/Applications/DexMate_mgdl_us/DexMate.app</code> if needed.</p>
+                        <p>If prompted for your password, type it in and press <strong>Enter</strong>. This ensures the security of the changes.</p>
+                        <p><strong>Important:</strong> Please double-check the commands before running them. We do not take any responsibility for issues caused by incorrectly typed commands or unintended changes to your system.</p>
+                        <p>Once you've completed these steps, you can close the Terminal window.</p>
+                    
+                        <h4>Launching DexMate</h4>
+                        <p>To run DexMate:</p>
+                        <ul>
+                            <li>Open the <strong>Applications</strong> folder.</li>
+                            <li>Locate <code>DexMate.app</code> and double-click it to launch.</li>
+                        </ul>
+                        <p>If you receive a warning about the app being from an "unidentified developer," follow these steps:</p>
+                        <ol>
+                            <li>Right-click (or Control-click) on <code>DexMate.app</code>.</li>
+                            <li>Select <strong>Open</strong> from the context menu.</li>
+                            <li>In the warning message that appears, click <strong>Open</strong> again to confirm.</li>
+                        </ol>
+                        <p>After confirming, the app will launch normally, and you won’t see this warning again.</p>
+                        <p>Enjoy using DexMate!</p>
+                    </div>                    
                 </div>
             </div>
 
