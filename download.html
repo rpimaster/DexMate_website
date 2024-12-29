@@ -281,13 +281,6 @@
             startDownload(link);
         }
 
-         // Google Analytics Event Tracking
-        gtag('event', 'download', {
-            'event_category': 'DexMate Downloads',
-            'event_label': link, 
-            'value': 1 
-        });
-
         function startDownload(link) {
             var hiddenLink = document.createElement('a');
             hiddenLink.href = link;
