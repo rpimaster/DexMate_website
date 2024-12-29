@@ -321,11 +321,6 @@
             });
         });
 
-        // Handle image load errors
-        lightboxImage.addEventListener('error', () => {
-            lightboxImage.src = "fallback.jpg"; // Replace with a default image
-        });
-
         // Close lightbox
         lightboxClose.addEventListener('click', () => {
             lightbox.style.display = 'none';
