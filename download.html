@@ -89,6 +89,15 @@
         }
     </style>
 </head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L03W48PVPE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-L03W48PVPE');
+</script>
 <body>
     <header>
         <div class="container">
@@ -260,6 +269,13 @@
 
             startDownload(link);
         }
+
+         // Google Analytics Event Tracking
+        gtag('event', 'download', {
+            'event_category': 'DexMate Downloads',
+            'event_label': link, 
+            'value': 1 
+        });
 
         function startDownload(link) {
             var hiddenLink = document.createElement('a');
