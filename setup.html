@@ -156,11 +156,18 @@
                     <div id="step4" class="step">
                         <h3>Step 4: Launch the App</h3>
                         <p>Open the <strong>Terminal</strong> application on your Mac. Then, paste the following commands one by one into the Terminal:</p>
-                        <ul>
-                            <li><code>sudo chown -R $USER /Applications/DexMate.app</code></li>
-                            <li><code>sudo chmod -R 755 /Applications/DexMate.app</code></li>
-                            <li><code>sudo xattr -rd com.apple.quarantine /Applications/DexMate.app</code></li>
-                        </ul>
+                        <div class="code-container">
+                            <pre>
+                                <code>
+                                    <ul>
+                                        <code>sudo chown -R $USER /Applications/DexMate.app</code>
+                                        <code>sudo chmod -R 755 /Applications/DexMate.app</code>
+                                        <code>sudo xattr -rd com.apple.quarantine /Applications/DexMate.app</code>
+                                    </ul>
+                                </code>
+                            </pre>
+                            <button class="copy-button" onclick="copyToClipboard()">Copy</button>
+                        </div>
                         <p>If prompted for your password, type it in and press <strong>Enter</strong>. This ensures the security of the changes.</p>
                         <p><strong>Important:</strong> Please double-check the commands before running them. We do not take any responsibility for issues caused by incorrectly typed commands or unintended changes to your system.</p>
                         <p>Once you've completed these steps, you can close the Terminal window.</p>
@@ -330,6 +337,30 @@
             if (e.target !== lightboxImage) {
                 lightbox.style.display = 'none';
             }
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const copyButtons = document.querySelectorAll('.copy-button');
+
+            copyButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const codeContent = e.target.closest('.code-container').querySelector('pre').textContent;
+                    
+                    // Fallback for browsers that don't support Clipboard API
+                    const textarea = document.createElement('textarea');
+                    textarea.value = codeContent;
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textarea);
+
+                    // Update button text to "Copied!"
+                    button.textContent = "Copied!";
+                    setTimeout(() => {
+                        button.textContent = "Copy";
+                    }, 2000);
+                });
+            });
         });
 
     </script>    
