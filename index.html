@@ -405,13 +405,21 @@
             var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
             v.onload = function() {
               window.voiceflow.chat.load({
-                verify: { projectID: '6794e37192c4506f06165a7a' },
+                verify: { projectID: '6794e37192c4506f06165a7a' }, // Your project ID
                 url: 'https://general-runtime.voiceflow.com',
                 versionID: 'production'
+              }).then(() => {
+                window.voiceflow.chat.proactive.clear(); // Clear all previous proactive messages
+                window.voiceflow.chat.proactive.push(
+                  { type: 'text', payload: { message: 'Looking for something specific? I can help! 🔍' } },  
+                  { type: 'text', payload: { message: 'Click the chat button anytime for quick answers!' } }
+                );
               });
-            }
-            v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+            };
+            v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; 
+            v.type = "text/javascript"; 
+            s.parentNode.insertBefore(v, s);
         })(document, 'script');
-      </script>
+      </script>      
 </body>
 </html>
