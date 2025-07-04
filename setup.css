@@ -25,10 +25,10 @@ body {
 }
 
 section {
-    min-height: 600px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    min-height: unset;
+    display: block;
+    flex-direction: unset;
+    justify-content: unset;
 }
 
 pre {
@@ -81,6 +81,105 @@ code {
     overflow-x: auto;
 }
 
+
+.macos-security {
+    background-color: #f0f8ff;
+    border: 1px solid #b8daff;
+    border-radius: 8px;
+    padding: 12px 14px;      /* Reduce vertical padding */
+    margin: 18px 0 10px 0;   /* Less margin below */
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 600px;        /* Optional: limit width for better look */
+}
+        
+.macos-security h4 {
+    color: #004085;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+        
+.macos-security h4 i {
+    font-size: 1.5em;
+}
+        
+.security-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 8px;
+    /* Remove any height/min-height/flex-grow */
+}
+        
+.security-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    background: #fff;
+    border-radius: 8px;
+    padding: 6px 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    border: 1px solid #e3e3e3;
+    margin-bottom: 0;
+    /* Remove any height/min-height/flex-grow */
+}
+        
+.security-step-number {
+    background: #4CAF50;
+    color: white;
+    width: 24px;                   /* Smaller circle */
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.95rem;
+    margin-top: 0;                 /* Remove offset */
+    flex-shrink: 0;
+}
+        
+.security-step h5 {
+    margin: 0 0 4px 0;             /* Less margin below title */
+    font-size: 1rem;               /* Slightly smaller */
+    color: #004085;
+}
+
+.security-step ol {
+    margin: 0;
+    padding-left: 18px;            /* Less indent */
+    font-size: 0.97rem;
+}
+
+.security-images {
+    display: flex;
+    gap: 15px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+        
+.security-images img {
+    max-width: 220px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border: 1px solid #eee;
+}
+
+/* Ensure images inside .step-card never overflow the card */
+.step-card img,
+.step-content img,
+.image-container img {
+    max-width: 420px; /* or whatever fits your card */
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
 /* Ensure the copy button is visible and clickable on mobile */
 .copy-button {
     position: absolute;
@@ -120,59 +219,158 @@ code {
     padding: 20px;
 }
 
+/* Header */
 header {
-    background-color: #333;
-    color: white;
-    padding: 5px 0; /* Reduce padding */
-    text-align: center;
-    font-size: 1em; /* Standard font size */
-}
-
-/* Container inside header for alignment */
-header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* Lightbox Styling */
-.lightbox {
-    display: none; /* Hidden by default */
-    justify-content: center;
-    align-items: center;
+    background: #333;
+    color: #fff;
+    padding: 10px 0;
+    border-bottom: 3px solid #4CAF50;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
-    z-index: 1000; /* Ensure it's above other elements */
+    z-index: 1000;
 }
 
-.lightbox img {
-    max-width: 90%;
-    max-height: 90%;
-    border: 2px solid white;
-    border-radius: 5px;
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0 20px;
 }
 
-.lightbox .close {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 30px;
-    color: white;
-    cursor: pointer;
-    z-index: 1001;
+header h1 {
+    margin: 0;
+    font-size: 1.8em;
+    padding-left: 10px;
 }
 
-/* Navbar styling */
+/* Navigation */
 nav ul.nav-links {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
-    gap: 15px; /* Smaller gap */
+}
+
+nav ul.nav-links li {
+    margin: 0 15px;
+}
+
+nav ul.nav-links a {
+    padding: 15px 0;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em;
+    display: block;
+    text-align: center;
+}
+
+.hamburger {
+    display: none;
+    font-size: 2em;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    z-index: 1002;
+}
+
+.hamburger:focus {
+    outline: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    nav ul.nav-links {
+        display: none;
+        flex-direction: column;
+        background: #333;
+        text-align: center;
+        width: 100%;
+        position: absolute;
+        top: 70px; /* match header height */
+        left: 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease-in-out;
+        z-index: 1001;
+    }
+
+    nav ul.nav-links.nav-active {
+        display: flex;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    nav ul.nav-links li {
+        margin: 0 0 10px 0;
+    }
+
+    nav ul.nav-links a {
+        padding: 15px 0;
+        font-size: 1.2em;
+        display: block;
+        text-align: center;
+    }
+}
+
+/* Remove or comment out any global .hamburger or nav button.hamburger display: none */
+/*
+.hamburger {
+    display: none;
+    font-size: 2em;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    margin-left: 16px;
+}
+nav button.hamburger {
+    display: none;
+    font-size: 1.8rem;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px;
+    transition: all 0.3s;
+    z-index: 1002;
+}
+*/
+
+/* Lightbox Styling */
+.lightbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.85);
+    z-index: 2000;
+}
+
+.lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 10px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+
+.lightbox .close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 2.5rem;
+    color: #fff;
+    cursor: pointer;
+    z-index: 2001;
 }
 
 nav ul.nav-links li {
@@ -185,40 +383,24 @@ header .container h1 {
     font-size: 1.5em; /* Slightly smaller title */
 }
 
-/* Responsive navbar for smaller screens */
-nav button.hamburger {
-    display: none; /* Initially hidden, shown in smaller screens */
+nav {
+    position: relative;
+    z-index: 1000; /* Bring the nav to the front */
 }
 
-@media (max-width: 768px) {
-    nav ul.nav-links {
-        display: none;
-        flex-direction: column;
-        gap: 10px;
-    }
+nav ul.nav-links li {
+    margin-left: 20px;
+}
 
-    nav ul.nav-links.nav-active {
-        display: flex;
-    }
+nav ul.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1em;
+}
 
-    nav button.hamburger {
-        display: block;
-    }
-
-    pre {
-        font-size: 0.85rem; /* Smaller font size */
-        padding: 15px; /* Reduced padding */
-    }
-
-    code {
-        font-size: 0.8rem; /* Match smaller size */
-    }
-
-    .copy-button {
-        top: 5px;
-        right: 5px;
-        padding: 3px 8px; /* Adjust size for small screens */
-    }
+.hamburger:focus {
+    outline: none;
 }
 
 /* Headings */
@@ -312,7 +494,7 @@ html, body {
 header {
     background: #333;
     color: #fff;
-    padding: 10px 0;
+    /* padding: 10px 0; */
     border-bottom: #4CAF50 3px solid;
 }
 
@@ -333,13 +515,6 @@ nav {
     z-index: 1000; /* Bring the nav to the front */
 }
 
-nav ul.nav-links {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-
 nav ul.nav-links li {
     margin-left: 20px;
 }
@@ -352,74 +527,27 @@ nav ul.nav-links a {
 }
 
 /* Hamburger Menu Styles */
-.hamburger {
+/* .hamburger {
     display: none;
     font-size: 2em;
     background: none;
     border: none;
     color: #fff;
     cursor: pointer;
-}
+}  */
 
-.hamburger:focus {
+/* .hamburger:focus {
     outline: none;
-}
-
-@media (max-width: 768px) {
-    .hamburger {
-        display: block; /* Ensure the hamburger is visible */
-    }
-
-    nav ul.nav-links {
-        display: none; /* Hide links by default */
-        flex-direction: column;
-        background: #333; /* Mobile background color */
-        text-align: center;
-    }
-
-    nav ul.nav-links.nav-active {
-        display: flex; /* Display when active */
-    }
-
-    nav ul.nav-links a {
-        padding: 10px 0;
-        color: #fff;
-        text-decoration: none;
-        font-size: 1.2em; /* Adjust for mobile */
-    }
-
-    pre {
-        font-size: 0.85rem; /* Smaller font size for limited screen space */
-        padding: 15px 10px; /* Compact padding for better fit */
-        max-width: 100%; /* Ensure it doesn't overflow container */
-        margin-bottom: 1rem; /* Reduce vertical spacing */
-    }
-
-    code {
-        font-size: 0.8rem; /* Adjust inline code size */
-        padding: 3px 5px; /* Compact padding */
-    }
-
-    .code-container {
-        overflow-x: auto; /* Enable scrolling if content exceeds width */
-        padding: 15px; /* Space around code container */
-    }
-
-    .copy-button {
-        padding: 10px 16px; /* Bigger padding for smaller screens */
-        font-size: 16px; /* Larger font for better visibility */
-    }
-}
+} */
 
 /* Fix for nav-active class */
-.nav-active {
+/* .nav-active {
     display: flex !important;
     flex-direction: column !important;
     background: #333 !important;
     visibility: visible !important;
     opacity: 1 !important;
-    z-index: 1001 !important;
-}
+} */
 
 .nav-active a {
     color: #fff !important; /* Ensure the text color is visible */
@@ -503,4 +631,305 @@ footer .designer {
     letter-spacing: 1px;
     font-weight: 400;
     margin: 0 5px;
+}
+
+/* Linux method tabs */
+.method-tabs {
+    display: flex;
+    margin: 20px 0;
+    border-bottom: 2px solid #4CAF50;
+}
+
+.method-btn {
+    padding: 10px 20px;
+    background: #f1f1f1;
+    border: none;
+    border-radius: 5px 5px 0 0;
+    margin-right: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.method-btn.active {
+    background: #4CAF50;
+    color: white;
+}
+
+.method-content {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 0 5px 5px 5px;
+    margin-bottom: 20px;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Keyboard key styling */
+kbd {
+    background-color: #eee;
+    border-radius: 3px;
+    border: 1px solid #b4b4b4;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .2), 
+                0 2px 0 0 rgba(255, 255, 255, .7) inset;
+    color: #333;
+    display: inline-block;
+    font-size: .85em;
+    font-weight: 700;
+    line-height: 1;
+    padding: 2px 6px;
+    white-space: nowrap;
+}
+
+/* Platform header */
+.platform-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #4CAF50;
+}
+
+/* Step cards */
+.step-card {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    align-items: flex-start;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.step-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.step-card.optional {
+    border-left: 4px solid #4CAF50;
+}
+
+.step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 50px;
+    height: 50px;
+    background: #4CAF50;
+    color: white;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.step-content {
+    flex: 1;
+    max-width: 600px;
+    margin: 0 auto;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+/* Tip and warning boxes */
+.tip-box, .warning-box {
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+    display: flex;
+    gap: 10px;
+}
+
+.tip-box {
+    background: #f0f9ff;
+    border-left: 4px solid #4CAF50;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    display: flex;
+    gap: 12px;
+}
+
+.tip-box i {
+    color: #4CAF50;
+    font-size: 1.5em;
+    margin-top: 3px;
+}
+
+.warning-box {
+    background: #ffecb3;
+    border-left: 4px solid #ffc107;
+}
+
+/* Limit warning box width and center it */
+.warning-box {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.warning-box i {
+    color: #ff9800;
+}
+
+/* Method selector */
+.method-selector {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.method-btn {
+    flex: 1;
+    padding: 12px;
+    background: #f1f1f1;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.method-btn.active {
+    background: #4CAF50;
+    color: white;
+}
+
+/* Support section */
+.support-section {
+    margin-top: 40px;
+    padding: 20px;
+    background: #e8f5e9;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.support-section h3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* New image container styles */
+.image-container {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border: 1px solid #eee;
+}
+
+/* Instruction grid for steps */
+.instruction-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.instruction-step {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.step-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    height: 30px;
+    background: #4CAF50;
+    color: white;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Make the inner security step box compact and centered */
+.macos-security .security-steps {
+    align-items: center; /* Center the step horizontally */
+}
+
+.macos-security .security-step {
+    max-width: 420px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Limit the width of all step-content blocks for consistency */
+.step-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .instruction-grid {
+        grid-template-columns: 1fr;
+    }
+    .image-row {
+        flex-direction: column;
+    }
+}
+
+/* Warning box adjustments */
+.warning-box pre,
+.warning-box pre code {
+    max-width: 100%;
+    overflow-x: auto;
+    white-space: pre-wrap; /* Allows wrapping if needed */
+    word-break: break-all; /* Break long words if needed */
+}
+
+@media (max-width: 900px) {
+    .method-content {
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-left: 0;
+        margin-right: 0;
+        overflow-x: auto;
+    }
+    .step-card {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 12px;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    .step-content {
+        max-width: 100%;
+        margin: 0;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+    .step-number {
+        min-width: 0;
+        width: 40px;
+        height: 40px;
+        margin-bottom: 8px;
+        align-self: flex-start;
+    }
 }

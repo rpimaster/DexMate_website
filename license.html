@@ -7,7 +7,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-YPVEJTY7V6');
     </script>
     <meta charset="UTF-8">
@@ -15,7 +14,6 @@
     <meta property="og:site_name" content="DexMate">
     <meta property="og:locale" content="en_US">
     <link rel="icon" type="image/x-icon" href="/logo_ico.ico">
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" 
           integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" 
           crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -28,76 +26,306 @@
     <!-- End Google Tag Manager -->
     <title>DexMate License</title>
     <style>
-        body {
+        /* Global Styles */
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
             font-family: Arial, sans-serif;
+        }
+
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #333;
+            --background-color: #f4f4f4;
+            --text-color: #333;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: 0.3s ease;
+        }
+
+        body {
             line-height: 1.6;
             color: #333;
-            margin: 0;
-            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
+
+        /* Header with fixed height and mobile optimization */
         header {
             background: #333;
             color: #fff;
-            padding: 20px 0;
-            text-align: center;
-            border-bottom: 3px solid #4CAF50;
+            border-bottom: #4CAF50 3px solid;
+            height: 70px;
+            min-height: 70px;
+            max-height: 70px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
         }
-        header nav ul {
-            padding: 0;
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+
+        header .container {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5em;
+            line-height: 70px;
+            white-space: nowrap;
+        }
+
+        nav {
+            position: relative;
+            z-index: 1000;
+        }
+
+        /* Navigation links - desktop version */
+        nav ul.nav-links {
             list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 15px;
+            align-items: center;
+            display: flex;
         }
-        header nav ul li {
-            display: inline;
-            margin: 0 10px;
+
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+            transition: color 0.3s;
         }
-        header nav ul li a {
+
+        a:hover {
+            color: #388E3C;
+            text-decoration: underline;
+        }
+
+        /* Navigation links - mobile version */
+        @media (max-width: 900px) {
+            nav ul.nav-links {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: #333;
+                flex-direction: column;
+                width: 100%;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+                border-radius: 0 0 8px 8px;
+                z-index: 1001;
+                padding: 15px 0;
+                max-height: calc(100vh - 70px);
+                overflow-y: auto;
+            }
+
+            nav ul.nav-links.nav-active {
+                display: flex;
+            }
+        }
+
+        nav ul.nav-links li {
+            margin: 0;
+        }
+
+        nav ul.nav-links a {
             color: #fff;
             text-decoration: none;
-            font-size: 18px;
+            text-transform: uppercase;
+            font-size: 1em;
+            padding: 8px 0;
+            display: block;
+            transition: all 0.3s;
+            width: 100%;
+            text-align: center;
         }
+
+        nav ul.nav-links a:hover {
+            color: #4CAF50;
+        }
+
+        /* Hamburger animation */
+        .hamburger i {
+            transition: transform 0.3s ease;
+        }
+
+        /* Mobile menu overlay */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+        
+        .menu-overlay.active {
+            display: block;
+        }
+        
+        /* Hamburger menu styles */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 10px;
+            transition: all 0.3s;
+            z-index: 1002;
+        }
+        
+        /* Show hamburger on mobile */
+        @media (max-width: 900px) {
+            .hamburger {
+                display: block;
+            }
+        }
+        
+        /* Prevent body scrolling when menu is open */
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        /* Main Content */
         main {
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
+            flex: 1;
+            padding: 90px 0 40px;
         }
-        main h2 {
+
+        /* License Content Styles */
+        .license-container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin: 20px auto;
+        }
+
+        h2 {
             border-bottom: 2px solid #4CAF50;
             padding-bottom: 10px;
             margin-bottom: 20px;
+            color: #333;
         }
-        .icon-attribution, .pydexcom-contribution, .terms, .privacy-policy {
-            margin-top: 30px;
-            font-size: 0.9em;
-            color: #777;
+
+        .license-container p {
+            margin-bottom: 15px;
+            line-height: 1.7;
         }
+
+        .license-container ul {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        .license-container li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .license-container a {
+            color: #4CAF50;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .license-container a:hover {
+            color: #388E3C;
+            text-decoration: underline;
+        }
+
+        .attribution-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border-left: 4px solid #4CAF50;
+        }
+
+        /* Footer */
         footer {
             background: #333;
             color: #fff;
-            padding: 20px 0;
+            padding: 30px 0;
             text-align: center;
-            border-top: 3px solid #4CAF50;
+            width: 100%;
+            margin-top: auto;
         }
+
         footer .footer-nav ul {
             padding: 0;
             list-style: none;
+            margin-bottom: 20px;
         }
+
         footer .footer-nav ul li {
             display: inline;
-            margin: 0 10px;
+            padding: 0 10px;
         }
+
         footer .footer-nav ul li a {
             color: #fff;
             text-decoration: none;
-            font-size: 18px;
         }
+
         footer .social-icons a {
             margin: 0 10px;
             color: #fff;
             text-decoration: none;
             font-size: 1.5em;
         }
-        footer .footer-bottom {
+
+        footer .footer-bottom p {
             margin-top: 10px;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        footer .designer {
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 400;
+            margin: 0 5px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 0 10px;
+            }
+            
+            .license-container {
+                padding: 20px;
+            }
+            
+            main {
+                padding: 90px 0 20px;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -106,8 +334,9 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NLFNJN5C"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-
-    <!-- Header -->
+    
+    <div class="menu-overlay" id="menuOverlay"></div>
+    
     <header>
         <div class="container">
             <h1>DexMate</h1>
@@ -115,13 +344,13 @@
                 <button class="hamburger" id="hamburger">
                     <i class="fas fa-bars"></i>
                 </button>
-                <ul class="nav-links">
+                <ul class="nav-links" id="navLinks">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="download.html">Download</a></li>
                     <li><a href="setup.html">Setup Guide</a></li>
                     <li><a href="developers.html">Developers</a></li>
                     <li><a href="support.html">Support</a></li>
-                    <li><a href="license.html">License</a></li>
+                    <li><a href="license.html" class="active">License</a></li>
                     <li><a href="about.html">About</a></li>
                 </ul>
             </nav>            
@@ -130,49 +359,53 @@
 
     <!-- Main Content -->
     <main>
-        <!-- MIT License Section -->
         <div class="container">
-            <h2>MIT License</h2>
-            <p>Copyright &copy; 2024 rpimaster</p>
-            <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
-            <p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
-            <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+            <div class="license-container">
+                <!-- MIT License Section -->
+                <div>
+                    <h2>MIT License</h2>
+                    <p>Copyright &copy; 2024 rpimaster</p>
+                    <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+                    <p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+                    <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+                </div>
+
+                <!-- Icon Attribution -->
+                <div class="attribution-section">
+                    <p>This site uses icons from <a href="https://fontawesome.com/" target="_blank" rel="noopener noreferrer">Font Awesome</a>.</p>
+                </div>
+
+                <!-- PyDexcom Attribution -->
+                <div class="attribution-section">
+                    <p>This app wouldn't work without <a href="https://github.com/gagebenne/pydexcom.git" target="_blank" rel="noopener noreferrer">pydexcom library</a>.</p>
+                </div>
+
+                <!-- Terms and Conditions Section -->
+                <div id="terms-conditions">
+                    <h2>Terms and Conditions</h2>
+                    <p>By using this website and downloading the DexMate software, you agree to the following terms:</p>
+                    <ul>
+                        <li>You are responsible for any actions you take based on the software's outputs. The software is not intended to be used as medical advice.</li>
+                        <li>DexMate is distributed under the MIT License, and the software is provided "as-is" without any warranties.</li>
+                        <li>We shall not be held liable for any damages, including indirect or consequential damages, arising out of or in connection with the use of this software.</li>
+                        <li>You agree not to misuse the website or software, including attempting to hack or alter the code.</li>
+                    </ul>
+                </div>        
+
+                <!-- Privacy Policy Section -->
+                <div id="privacy-policy">
+                    <h2>Privacy Policy</h2>
+                    <p>At DexMate, we respect your privacy. Here's how we handle your data:</p>
+                    <ul>
+                        <li>We collect anonymized data via <a href="https://analytics.google.com" target="_blank" rel="noopener noreferrer">Google Analytics</a> to help improve the website.</li>
+                        <li>Google Analytics uses cookies to track visitor behavior. You can opt out of Google Analytics tracking by installing the add-on to your browser.</li>
+                        <li>Any personal information provided via the contact form (e.g., email addresses) is kept confidential and only used to respond to your queries.</li>
+                        <li>We do not share your personal data with third parties, except where required by law.</li>
+                        <li>You can contact us at <a href="mailto:dexmate.contact@gmail.com">dexmate.contact@gmail.com</a> to request access to, correction, or deletion of your personal data.</li>
+                    </ul>
+                </div>        
+            </div>
         </div>
-
-        <!-- Icon Attribution -->
-        <div class="container icon-attribution">
-            <p>This site uses icons from <a href="https://fontawesome.com/" target="_blank" rel="noopener noreferrer">Font Awesome</a>.</p>
-        </div>
-
-        <!-- PyDexcom Attribution -->
-        <div class="container pydexcom-contribution">
-            <p>This app wouldn't work without <a href="https://github.com/gagebenne/pydexcom.git" target="_blank" rel="noopener noreferrer">pydexcom library</a>.</p>
-        </div>
-
-        <!-- Terms and Conditions Section -->
-        <div class="container terms">
-            <h2>Terms and Conditions</h2>
-            <p>By using this website and downloading the DexMate software, you agree to the following terms:</p>
-            <ul>
-                <li>You are responsible for any actions you take based on the software's outputs. The software is not intended to be used as medical advice.</li>
-                <li>DexMate is distributed under the MIT License, and the software is provided "as-is" without any warranties.</li>
-                <li>We shall not be held liable for any damages, including indirect or consequential damages, arising out of or in connection with the use of this software.</li>
-                <li>You agree not to misuse the website or software, including attempting to hack or alter the code.</li>
-            </ul>
-        </div>        
-
-        <!-- Privacy Policy Section -->
-        <div class="container privacy-policy">
-            <h2>Privacy Policy</h2>
-            <p>At DexMate, we respect your privacy. Here's how we handle your data:</p>
-            <ul>
-                <li>We collect anonymized data via <a href="https://analytics.google.com" target="_blank" rel="noopener noreferrer">Google Analytics</a> to help improve the website.</li>
-                <li>Google Analytics uses cookies to track visitor behavior. You can opt out of Google Analytics tracking by installing the add-on to your browser.</li>
-                <li>Any personal information provided via the contact form (e.g., email addresses) is kept confidential and only used to respond to your queries.</li>
-                <li>We do not share your personal data with third parties, except where required by law.</li>
-                <li>You can contact us at <a href="mailto:dexmate.contact@gmail.com">dexmate.contact@gmail.com</a> to request access to, correction, or deletion of your personal data.</li>
-            </ul>
-        </div>        
     </main>
 
     <!-- Footer -->
@@ -186,8 +419,8 @@
                     <li><a href="developers.html">Developers</a></li>
                     <li><a href="support.html">Support</a></li>
                     <li><a href="license.html">License</a></li>
-                    <li><a href="privacy.html">Privacy Policy</a></li> <!-- New Link -->
-                    <li><a href="terms.html">Terms & Conditions</a></li> <!-- New Link -->
+                    <li><a href="license.html">Privacy Policy</a></li>
+                    <li><a href="license.html">Terms & Conditions</a></li>
                     <li><a href="about.html">About</a></li>
                 </ul>
             </div>
@@ -195,19 +428,59 @@
                 <a href="#"><i class="fab fa-youtube"></i></a>
                 <a href="https://www.facebook.com/share/19aJANhniV/?mibextid=wwXIfr"><i class="fab fa-facebook"></i></a>
                 <a href="https://www.instagram.com/dexmate_widget/profilecard/?igsh=c2J2dWJnNnZ6Mndp"><i class="fab fa-instagram"></i></a>
+                <a href="https://discord.gg/fZxrHAtDsh" target="_blank"><i class="fab fa-discord"></i></a>
             </div>
             <div class="footer-bottom">
                 <p>Copyright &copy; 2024; Designed by <span class="designer">rpimaster</span></p>
                 <p>This project is licensed under the MIT License - see the <a href="license.html">LICENSE</a> file for details.</p>
-                <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms & Conditions</a></p> <!-- Additional Line -->
+                <p><a href="license.html">Privacy Policy</a> | <a href="license.html">Terms & Conditions</a></p>
             </div>
         </div>
-    </footer>    
-
-    <!-- JavaScript -->
+    </footer>
+    
     <script>
-        document.querySelector('#hamburger').addEventListener('click', function() {
-            document.querySelector('ul.nav-links').classList.toggle('nav-active');
+        // Hamburger menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+            const menuOverlay = document.getElementById('menuOverlay');
+            const hamburgerIcon = hamburger.querySelector('i');
+
+            hamburger.addEventListener('click', function() {
+                navLinks.classList.toggle('nav-active');
+                menuOverlay.classList.toggle('active');
+                document.body.classList.toggle('menu-open');
+                
+                // Toggle hamburger icon
+                if (navLinks.classList.contains('nav-active')) {
+                    hamburgerIcon.classList.remove('fa-bars');
+                    hamburgerIcon.classList.add('fa-times');
+                } else {
+                    hamburgerIcon.classList.remove('fa-times');
+                    hamburgerIcon.classList.add('fa-bars');
+                }
+            });
+
+            // Close menu when clicking overlay
+            menuOverlay.addEventListener('click', function() {
+                navLinks.classList.remove('nav-active');
+                menuOverlay.classList.remove('active');
+                hamburgerIcon.classList.remove('fa-times');
+                hamburgerIcon.classList.add('fa-bars');
+                document.body.classList.remove('menu-open');
+            });
+
+            // Close menu when clicking a link
+            const navItems = document.querySelectorAll('#navLinks a');
+            navItems.forEach(function(item) {
+                item.addEventListener('click', function() {
+                    navLinks.classList.remove('nav-active');
+                    menuOverlay.classList.remove('active');
+                    hamburgerIcon.classList.remove('fa-times');
+                    hamburgerIcon.classList.add('fa-bars');
+                    document.body.classList.remove('menu-open');
+                });
+            });
         });
     </script>
     <script type="text/javascript">
@@ -218,10 +491,18 @@
                 verify: { projectID: '6794e37192c4506f06165a7a' },
                 url: 'https://general-runtime.voiceflow.com',
                 versionID: 'production'
+              }).then(() => {
+                window.voiceflow.chat.proactive.clear();
+                window.voiceflow.chat.proactive.push(
+                  { type: 'text', payload: { message: 'Looking for something specific? I can help! 🔍' } },  
+                  { type: 'text', payload: { message: 'Click the chat button anytime for quick answers!' } }
+                );
               });
-            }
-            v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+            };
+            v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; 
+            v.type = "text/javascript"; 
+            s.parentNode.insertBefore(v, s);
         })(document, 'script');
-      </script>
+    </script>
 </body>
 </html>

@@ -15,7 +15,6 @@
     <meta name="description" content="Download DexMate for Windows, macOS, and Linux.">
     <meta name="keywords" content="DexMate, downloads, Dexcom widget, Linux, macOS, Windows">
     <link rel="icon" type="image/x-icon" href="/logo_ico.ico">
-    <link rel="stylesheet" href="download.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -26,6 +25,377 @@
     <!-- End Google Tag Manager -->
     <title>DexMate - Download</title>
     <style>
+        /* Header CSS from other pages */
+        /* Fixed Header - Implemented from other pages */
+        header {
+            background: #333;
+            color: #fff;
+            border-bottom: #4CAF50 3px solid;
+            height: 70px;
+            min-height: 70px;
+            max-height: 70px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        header .container {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5em;
+            line-height: 70px;
+            white-space: nowrap;
+        }
+
+        nav {
+            position: relative;
+            z-index: 1000;
+        }
+
+        nav ul.nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 15px;
+            align-items: center;
+            display: flex;
+        }
+
+        nav ul.nav-links li {
+            margin: 0;
+        }
+
+        nav ul.nav-links a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 1em;
+            padding: 8px 0;
+            display: block;
+            transition: all 0.3s;
+            width: 100%;
+            text-align: center;
+        }
+
+        nav ul.nav-links a:hover {
+            color: #4CAF50;
+        }
+
+        /* Hamburger menu - Implemented from other pages */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 10px;
+            transition: all 0.3s;
+            z-index: 1002;
+        }
+
+        /* Menu overlay - Implemented from other pages */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        /* Mobile navigation - Implemented from other pages */
+        @media (max-width: 900px) {
+            .hamburger {
+                display: block;
+            }
+            
+            nav ul.nav-links {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: #333;
+                flex-direction: column;
+                width: 100%;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+                border-radius: 0 0 8px 8px;
+                z-index: 1001;
+                padding: 15px 0;
+                max-height: calc(100vh - 70px);
+                overflow-y: auto;
+            }
+            
+            nav ul.nav-links.nav-active {
+                display: flex;
+            }
+        }
+
+        /* Existing page CSS */
+        /* Global Styles */
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100vh;
+            padding-top: 70px; /* Added for fixed header */
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        h2 {
+            margin-top: 20px; /* Space above the header */
+            margin-bottom: 30px; /* Add more space below the header */
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        /* Adjust the paragraph or subtitle spacing */
+        .subtitle {
+            margin-bottom: 40px; /* Add more space below the subtitle */
+        }
+
+        /* Optional: Adjust the entire content wrapper if needed */
+        .content-section {
+            margin-top: 20px; /* Space above the section */
+            padding-top: 20px; /* Add inner padding for breathing room */
+        }
+
+        .content-wrapper {
+            text-align: center;
+            margin-top: 50px; /* Increased margin to create more space above */
+            padding: 20px;    /* Padding inside the wrapper for better layout */
+            background-color: #f9f9f9; /* Subtle background to separate the section */
+            border: 1px solid #ddd;    /* Optional border for definition */
+            border-radius: 8px;        /* Rounded corners for a modern look */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+        }
+
+        .headline {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .sub-headline {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .vscode-download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: black;
+            color: white;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .vscode-download-btn:hover {
+            background-color: #007ACC; /* Visual Studio Code blue color */
+        }
+
+        .vscode-download-btn img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        /* Container Styles */
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: #fff;
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        footer .footer-nav ul {
+            padding: 0;
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        footer .footer-nav ul li {
+            display: inline;
+            padding: 0 10px;
+        }
+
+        footer .footer-nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        footer .social-icons a {
+            margin: 0 10px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5em;
+        }
+
+        footer .footer-bottom p {
+            margin-top: 10px;
+            color: #fff;
+        }
+
+        footer .designer {
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 400;
+            margin: 0 5px;
+        }
+
+        /* --- OS Download Cards --- */
+        .os-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .os-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .os-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+
+        .os-card i {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: #28a745;
+        }
+
+        .os-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .os-options {
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .os-option {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: background 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .os-option:hover {
+            background: #e9ecef;
+        }
+
+        .os-option i {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: #6c757d;
+        }
+
+        .option-info {
+            flex-grow: 1;
+        }
+
+        .option-info h4 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .option-info p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            color: #6c757d;
+            text-align: left;
+        }
+
+        .download-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 12px;
+            background: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            background: #28a745;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .os-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
         /* Custom Popup Styles */
         .popup-overlay {
             position: fixed;
@@ -103,6 +473,17 @@
             visibility: visible;
             opacity: 1;
         }
+
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #388E3C;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -110,6 +491,11 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NLFNJN5C"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+    
+    <!-- Menu overlay from other pages -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+    
+    <!-- Updated header with hamburger menu -->
     <header>
         <div class="container">
             <h1>DexMate</h1>
@@ -117,9 +503,9 @@
                 <button class="hamburger" id="hamburger">
                     <i class="fas fa-bars"></i>
                 </button>
-                <ul class="nav-links">
+                <ul class="nav-links" id="navLinks">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="download.html">Download</a></li>
+                    <li><a href="download.html" class="active">Download</a></li>
                     <li><a href="setup.html">Setup Guide</a></li>
                     <li><a href="developers.html">Developers</a></li>
                     <li><a href="support.html">Support</a></li>
@@ -129,36 +515,92 @@
             </nav>            
         </div>
     </header>
+    
     <main>
         <div class="container">
             <h2>Download DexMate</h2>
-            <p>Please select your location, preferred measurement units, and operating system to download the correct version of DexMate.</p>
+            <p>Select your operating system to get started</p>
 
-            <form id="downloadForm">
-                <label for="location">Location:</label>
-                <select id="location" name="location" required>
-                    <option value="">Select your location</option>
-                    <option value="us">Inside US</option>
-                    <option value="non-us">Outside US</option>
-                </select>
-
-                <label for="units">Measurement Units:</label>
-                <select id="units" name="units" required>
-                    <option value="">Select measurement units</option>
-                    <option value="mmol">mmol/L</option>
-                    <option value="mgdl">mg/dL</option>
-                </select>
-
-                <label for="os">Operating System:</label>
-                <select id="os" name="os" required>
-                    <option value="">Select your OS</option>
-                    <option value="mac">Mac</option>
-                    <option value="windows">Windows</option>
-                    <option value="linux">Linux</option>
-                </select>
-
-                <button type="button" onclick="showPopup()">Download</button>
-            </form>
+            <div class="os-cards">
+                <!-- Windows Card -->
+                <div class="os-card">
+                    <i class="fab fa-windows"></i>
+                    <h3>Windows</h3>
+                    <p>For Windows 10/11 (64-bit)</p>
+                    
+                    <div class="os-options">
+                        <a href="#" class="os-option" data-os="windows-exe">
+                            <i class="fas fa-file-download"></i>
+                            <div class="option-info">
+                                <h4>Installer (.exe)</h4>
+                                <p>Recommended for most users</p>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <a href="#" class="download-btn" data-os="windows-exe">
+                        Download for Windows
+                    </a>
+                </div>
+                
+                <!-- macOS Card -->
+                <div class="os-card">
+                    <i class="fab fa-apple"></i>
+                    <h3>macOS</h3>
+                    <p>For macOS 10.15 or newer</p>
+                    
+                    <div class="os-options">
+                        <a href="#" class="os-option" data-os="mac-dmg">
+                            <i class="fas fa-compact-disc"></i>
+                            <div class="option-info">
+                                <h4>Disk Image (.dmg)</h4>
+                                <p>Drag to Applications folder</p>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <a href="#" class="download-btn" data-os="mac-dmg">
+                        Download for macOS
+                    </a>
+                </div>
+                
+                <!-- Linux Card -->
+                <div class="os-card">
+                    <i class="fab fa-linux"></i>
+                    <h3>Linux</h3>
+                    <p>Choose your preferred method</p>
+                    
+                    <div class="os-options">
+                        <a href="#" class="os-option" data-os="linux-snap">
+                            <i class="fab fa-snapcraft"></i>
+                            <div class="option-info">
+                                <h4>Snap Store</h4>
+                                <p>Automatic updates</p>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="os-option" data-os="linux-zip">
+                            <i class="fas fa-file-archive"></i>
+                            <div class="option-info">
+                                <h4>ZIP Archive</h4>
+                                <p>Manual installation</p>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="os-option" data-os="linux-ubuntu">
+                            <i class="fab fa-ubuntu"></i>
+                            <div class="option-info">
+                                <h4>Ubuntu Store</h4>
+                                <p>Coming soon</p>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <a href="#" class="download-btn" id="linux-download-btn">
+                        Download Options
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="content-wrapper">
             <!-- Heading -->
@@ -183,8 +625,8 @@
                     <li><a href="developers.html">Developers</a></li>
                     <li><a href="support.html">Support</a></li>
                     <li><a href="license.html">License</a></li>
-                    <li><a href="privacy.html">Privacy Policy</a></li> <!-- New Link -->
-                    <li><a href="terms.html">Terms & Conditions</a></li> <!-- New Link -->
+                    <li><a href="license.html">Privacy Policy</a></li>
+                    <li><a href="license.html">Terms & Conditions</a></li>
                     <li><a href="about.html">About</a></li>
                 </ul>
             </div>
@@ -192,11 +634,12 @@
                 <a href="#"><i class="fab fa-youtube"></i></a>
                 <a href="https://www.facebook.com/share/19aJANhniV/?mibextid=wwXIfr"><i class="fab fa-facebook"></i></a>
                 <a href="https://www.instagram.com/dexmate_widget/profilecard/?igsh=c2J2dWJnNnZ6Mndp"><i class="fab fa-instagram"></i></a>
+                <a href="https://discord.gg/fZxrHAtDsh" target="_blank"><i class="fab fa-discord"></i></a>
             </div>
             <div class="footer-bottom">
                 <p>Copyright &copy; 2024; Designed by <span class="designer">rpimaster</span></p>
                 <p>This project is licensed under the MIT License - see the <a href="license.html">LICENSE</a> file for details.</p>
-                <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms & Conditions</a></p> <!-- Additional Line -->
+                <p><a href="license.html">Privacy Policy</a> | <a href="license.html">Terms & Conditions</a></p>
             </div>
         </div>
     </footer>    
@@ -215,6 +658,80 @@
     </div>
 
     <script>
+        // Hamburger menu functionality from other pages
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+            const menuOverlay = document.getElementById('menuOverlay');
+            const hamburgerIcon = hamburger.querySelector('i');
+
+            hamburger.addEventListener('click', function() {
+                navLinks.classList.toggle('nav-active');
+                menuOverlay.classList.toggle('active');
+                
+                // Toggle hamburger icon
+                if (navLinks.classList.contains('nav-active')) {
+                    hamburgerIcon.classList.remove('fa-bars');
+                    hamburgerIcon.classList.add('fa-times');
+                } else {
+                    hamburgerIcon.classList.remove('fa-times');
+                    hamburgerIcon.classList.add('fa-bars');
+                }
+            });
+
+            // Close menu when clicking overlay
+            menuOverlay.addEventListener('click', function() {
+                navLinks.classList.remove('nav-active');
+                menuOverlay.classList.remove('active');
+                hamburgerIcon.classList.remove('fa-times');
+                hamburgerIcon.classList.add('fa-bars');
+            });
+
+            // Close menu when clicking a link
+            const navItems = document.querySelectorAll('#navLinks a');
+            navItems.forEach(function(item) {
+                item.addEventListener('click', function() {
+                    navLinks.classList.remove('nav-active');
+                    menuOverlay.classList.remove('active');
+                    hamburgerIcon.classList.remove('fa-times');
+                    hamburgerIcon.classList.add('fa-bars');
+                });
+            });
+        });
+
+        // Simplified download links
+        const downloadLinks = {
+            'windows-exe': 'Installers/DexMate_setup.exe',
+            'mac-dmg': 'Installers/DexMate.dmg',
+            'linux-snap': 'https://snapcraft.io/dexmate',
+            'linux-zip': 'Installers/DexMate.zip',
+            'linux-ubuntu': '#' // Placeholder for future Ubuntu store link
+        };
+
+        // Set up download buttons
+        document.querySelectorAll('.os-option, .download-btn').forEach(element => {
+            element.addEventListener('click', function(e) {
+                e.preventDefault();
+                const osType = this.getAttribute('data-os');
+                
+                // Special case for Linux download button
+                if(this.id === 'linux-download-btn') return;
+                
+                // Set OS type in session storage
+                sessionStorage.setItem('selectedOS', osType);
+                
+                // Show warning popup
+                showPopup();
+            });
+        });
+
+        // Handle Linux download button
+        document.getElementById('linux-download-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Please select a Linux download option from the list above');
+        });
+
+        // Handle popup functions
         function showPopup() {
             document.getElementById('popupOverlay').classList.add('active');
         }
@@ -225,75 +742,25 @@
 
         function proceedDownload() {
             closePopup();
-            getDownloadLink();
-        }
-
-        function getDownloadLink() {
-            var location = document.getElementById('location').value;
-            var units = document.getElementById('units').value;
-            var os = document.getElementById('os').value;
-
-            if (!location || !units || !os) {
-                alert('Please select your location, measurement units, and operating system.');
-                return;
-            }
-
-            var link = '';
-
-            if (location === 'us') {
-                if (units === 'mmol') {
-                    if (os === 'mac') {
-                        link = 'Zip/MacOS/DexMate_mmol_us.zip';
-                    } else if (os === 'windows') {
-                        link = 'Zip/Windows/DexMate_mmol_us.exe';
-                    } else if (os === 'linux') {
-                        link = 'Zip/Linux/DexMate_US_mmol_Linux.zip';
-                    }
-                } else if (units === 'mgdl') {
-                    if (os === 'mac') {
-                        link = 'Zip/MacOS/DexMate_mgdl_us.zip';
-                    } else if (os === 'windows') {
-                        link = 'Zip/Windows/DexMate_mgdl_us.exe';
-                    } else if (os === 'linux') {
-                        link = 'Zip/Linux/DexMate_US_mgdl_Linux.zip';
-                    }
-                }
-            } else if (location === 'non-us') {
-                if (units === 'mmol') {
-                    if (os === 'mac') {
-                        link = 'Zip/MacOS/DexMate_mmol.zip';
-                    } else if (os === 'windows') {
-                        link = 'Zip/Windows/DexMate_mmol.exe';
-                    } else if (os === 'linux') {
-                        link = 'Zip/Linux/DexMate_OUS_mmol_Linux.zip';
-                    }
-                } else if (units === 'mgdl') {
-                    if (os === 'mac') {
-                        link = 'Zip/MacOS/DexMate_mgdl.zip';
-                    } else if (os === 'windows') {
-                        link = 'Zip/Windows/DexMate_mgdl.exe';
-                    } else if (os === 'linux') {
-                        link = 'Zip/Linux/DexMate_OUS_mgdl_Linux.zip';
-                    }
+            const osType = sessionStorage.getItem('selectedOS');
+            
+            if(osType && downloadLinks[osType]) {
+                const link = downloadLinks[osType];
+                
+                if(link.startsWith('http')) {
+                    // Open external links in new tab
+                    window.open(link, '_blank');
+                } else {
+                    // Trigger file download
+                    const hiddenLink = document.createElement('a');
+                    hiddenLink.href = link;
+                    hiddenLink.download = '';
+                    document.body.appendChild(hiddenLink);
+                    hiddenLink.click();
+                    document.body.removeChild(hiddenLink);
                 }
             }
-
-            startDownload(link);
         }
-
-        function startDownload(link) {
-            var hiddenLink = document.createElement('a');
-            hiddenLink.href = link;
-            hiddenLink.download = '';
-            document.body.appendChild(hiddenLink);
-            hiddenLink.click();
-            document.body.removeChild(hiddenLink);
-        }
-    </script>
-    <script>
-        document.querySelector('#hamburger').addEventListener('click', function() {
-            document.querySelector('ul.nav-links').classList.toggle('nav-active');
-        });
     </script>
     <script type="text/javascript">
         (function(d, t) {
@@ -307,6 +774,6 @@
             }
             v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
         })(document, 'script');
-      </script>
+    </script>
 </body>
 </html>

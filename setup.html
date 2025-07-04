@@ -15,7 +15,6 @@
     <meta name="description" content="Learn how to install, configure, and use DexMate.">
     <meta name="keywords" content="DexMate, documentation, setup guide, user manual">
     <link rel="icon" type="image/x-icon" href="/logo_ico.ico">
-    <link rel="stylesheet" href="./setup.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -25,12 +24,918 @@
     })(window,document,'script','dataLayer','GTM-NLFNJN5C');</script>
     <!-- End Google Tag Manager -->
     <title>DexMate Setup Guide</title>
+    <style>
+        /* Global Styles */
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #333;
+            --background-color: #f4f4f4;
+            --text-color: #333;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: 0.3s ease;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        section {
+            min-height: unset;
+            display: block;
+            flex-direction: unset;
+            justify-content: unset;
+        }
+
+        pre {
+            background-color: var(--secondary-color);
+            color: #dcdcdc;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow-x: auto;
+            font-family: 'Fira Code', monospace;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        pre code {
+            display: block;
+            line-height: 1.8;
+            word-spacing: 0.15rem;
+            letter-spacing: 0.05rem;
+        }
+
+        pre + pre {
+            margin-top: 30px;
+        }
+
+        code {
+            background-color: #444;
+            color: #ffa7c4;
+            padding: 6px 10px;
+            border-radius: var(--border-radius);
+            font-size: 0.95rem;
+            white-space: nowrap;
+            line-height: 1.6;
+            margin: 2px 0;
+        }
+
+        /* Add this to your existing CSS */
+        @media (max-width: 768px) {
+            .code-container {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            .code-container pre {
+                white-space: pre-wrap;
+                word-break: break-word;
+            }
+            pre {
+                padding: 15px;
+                font-size: 0.85rem;
+            }
+            
+            .code-container pre code {
+                word-break: break-word;
+                white-space: pre-wrap;
+            }
+            
+            .step-card {
+                padding: 15px;
+            }
+            
+            .instruction-step {
+                padding: 10px;
+            }
+             
+            .instruction-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .token.keyword { color: #c586c0; }
+        .token.string { color: #ce9178; }
+        .token.function { color: #dcdcaa; }
+        .token.comment { color: #6a9955; font-style: italic; }
+
+        .code-container {
+            position: relative;
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .macos-security {
+            background-color: #f0f8ff;
+            border: 1px solid #b8daff;
+            border-radius: 8px;
+            padding: 12px 14px;
+            margin: 18px 0 10px 0;
+            box-sizing: border-box;
+            width: 100%;
+            max-width: 600px;
+        }
+        
+        .macos-security h4 {
+            color: #004085;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .macos-security h4 i {
+            font-size: 1.5em;
+        }
+        
+        .security-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 8px;
+        }
+        
+        .security-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            background: #fff;
+            border-radius: 8px;
+            padding: 6px 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            border: 1px solid #e3e3e3;
+            margin-bottom: 0;
+        }
+        
+        .security-step-number {
+            background: #4CAF50;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.95rem;
+            margin-top: 0;
+            flex-shrink: 0;
+        }
+        
+        .security-step h5 {
+            margin: 0 0 4px 0;
+            font-size: 1rem;
+            color: #004085;
+        }
+
+        .security-step ol {
+            margin: 0;
+            padding-left: 18px;
+            font-size: 0.97rem;
+        }
+
+        .security-images {
+            display: flex;
+            gap: 15px;
+            margin-top: 18px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .security-images img {
+            max-width: 220px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid #eee;
+        }
+
+        .step-card img,
+        .step-content img,
+        .image-container img {
+            max-width: 420px;
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease, transform 0.2s;
+            z-index: 1001;
+        }
+
+        .copy-button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        .copy-button:active {
+            transform: scale(0.98);
+        }
+
+        .copy-button:focus {
+            outline: none;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 2rem 0;
+            padding: 20px;
+        }
+
+        /* Header with fixed height and mobile optimization */
+        header {
+            background: #333;
+            color: #fff;
+            border-bottom: #4CAF50 3px solid;
+            height: 70px;
+            min-height: 70px;
+            max-height: 70px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+        }
+
+        header .container {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5em;
+            line-height: 70px;
+            white-space: nowrap;
+        }
+
+        nav {
+            position: relative;
+            z-index: 1000;
+        }
+
+        /* Navigation links - desktop version */
+        nav ul.nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 15px;
+            align-items: center;
+            display: flex;
+        }
+
+        /* Navigation links - mobile version */
+        @media (max-width: 900px) {
+            nav ul.nav-links {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: #333;
+                flex-direction: column;
+                width: 100%;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+                border-radius: 0 0 8px 8px;
+                z-index: 1001;
+                padding: 15px 0;
+                max-height: calc(100vh - 70px);
+                overflow-y: auto;
+            }
+
+            nav ul.nav-links.nav-active {
+                display: flex;
+            }
+        }
+
+        nav ul.nav-links li {
+            margin: 0;
+        }
+
+        nav ul.nav-links a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 1em;
+            padding: 8px 0;
+            display: block;
+            transition: all 0.3s;
+            width: 100%;
+            text-align: center;
+        }
+
+        nav ul.nav-links a:hover {
+            color: #4CAF50;
+        }
+
+        /* Lightbox Styling */
+        .lightbox {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.85);
+            z-index: 2000;
+        }
+
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 10px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+        }
+
+        .lightbox .close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 2.5rem;
+            color: #fff;
+            cursor: pointer;
+            z-index: 2001;
+        }
+
+        /* Headings */
+        h1, h2, h3 {
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            padding: 1rem 0;
+        }
+
+        /* Text */
+        p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Introduction Paragraph */
+        .introduction {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #777;
+        }
+
+        /* Image Row Styling - Pairs of Images Side by Side */
+        .image-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 20px;
+            justify-items: center;
+            align-items: center;
+        }
+
+        .image-row img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .image-row img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Styling for Single Images (Not in .image-row) */
+        .step img:not(.image-row img) {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .step img:not(.image-row img):hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* For responsiveness - stack images vertically on small screens */
+        @media (max-width: 768px) {
+            .image-row {
+                grid-template-columns: 1fr;
+            }
+
+            .image-row img {
+                max-width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+
+        /* Base Styles for Header */
+        header {
+            background: #333;
+            color: #fff;
+            border-bottom: #4CAF50 3px solid;
+        }
+
+        /* Tab Styling */
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            margin-bottom: 1rem;
+        }
+
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        .tab button.active {
+            background-color: #4CAF50;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        footer .footer-nav ul {
+            padding: 0;
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        footer .footer-nav ul li {
+            display: inline;
+            padding: 0 10px;
+        }
+
+        footer .footer-nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        footer .social-icons a {
+            margin: 0 10px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5em;
+        }
+
+        footer .footer-bottom p {
+            margin-top: 10px;
+            color: #fff;
+        }
+
+        footer .designer {
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 400;
+            margin: 0 5px;
+        }
+
+        /* Linux method tabs */
+        .method-tabs {
+            display: flex;
+            margin: 20px 0;
+            border-bottom: 2px solid #4CAF50;
+        }
+
+        .method-btn {
+            padding: 10px 20px;
+            background: #f1f1f1;
+            border: none;
+            border-radius: 5px 5px 0 0;
+            margin-right: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .method-btn.active {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .method-content {
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 0 5px 5px 5px;
+            margin-bottom: 20px;
+        }
+
+        /* Keyboard key styling */
+        kbd {
+            background-color: #eee;
+            border-radius: 3px;
+            border: 1px solid #b4b4b4;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .2), 
+                        0 2px 0 0 rgba(255, 255, 255, .7) inset;
+            color: #333;
+            display: inline-block;
+            font-size: .85em;
+            font-weight: 700;
+            line-height: 1;
+            padding: 2px 6px;
+            white-space: nowrap;
+        }
+
+        /* Platform header */
+        .platform-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #4CAF50;
+        }
+
+        /* Step cards */
+        .step-card {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            align-items: flex-start;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .step-card.optional {
+            border-left: 4px solid #4CAF50;
+        }
+
+        .step-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: black;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        /* Tip and warning boxes */
+        .tip-box, .warning-box {
+            background: #f9fbe7;
+            border-left: 4px solid #ffeb3b;
+            padding: 12px 16px;
+            margin: 16px 0;
+            border-radius: 6px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+        }
+
+        .tip-box i, .warning-box i {
+            color: #ffeb3b;
+            margin-top: 2px;
+        }
+
+        .warning-box i {
+            color: #ff9800;
+        }
+
+        .image-row {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+        }
+
+        .image-row img {
+            max-width: 220px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .method-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .method-btn {
+            background: #f1f1f1;
+            border: none;
+            border-radius: 5px 5px 0 0;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .method-btn.active {
+            background: #4CAF50;
+            color: #fff;
+        }
+
+        .method-content {
+            padding: 20px 0;
+        }
+
+        .support-section {
+            margin-top: 40px;
+            padding: 20px;
+            background: #e8f5e9;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .support-section h3 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .image-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 1px solid #eee;
+        }
+
+        .instruction-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .instruction-step {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .step-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 30px;
+            height: 30px;
+            background: #4CAF50;
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .macos-security .security-steps {
+            align-items: center;
+        }
+
+        .macos-security .security-step {
+            max-width: 420px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .step-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .instruction-grid {
+                grid-template-columns: 1fr;
+            }
+            .image-row {
+                flex-direction: column;
+            }
+        }
+
+        .warning-box pre,
+        .warning-box pre code {
+            max-width: 100%;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        /* Mobile menu animation */
+        nav ul.nav-links {
+            transition: all 0.3s ease;
+        }
+
+        /* Hamburger animation */
+        .hamburger i {
+            transition: transform 0.3s ease;
+        }
+
+        /* Mobile menu overlay */
+        @media (max-width: 900px) {
+            .menu-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                z-index: 999;
+                display: none;
+            }
+            
+            .menu-overlay.active {
+                display: block;
+            }
+        }
+        
+        /* Hamburger menu styles */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 10px;
+            transition: all 0.3s;
+            z-index: 1002;
+        }
+
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #388E3C;
+            text-decoration: underline;
+        }
+        
+        /* Show hamburger on mobile */
+        @media (max-width: 900px) {
+            .hamburger {
+                display: block;
+            }
+        }
+        
+        /* Prevent body scrolling when menu is open */
+        body.menu-open {
+            overflow: hidden;
+        }
+        
+        /* Menu overlay */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+        
+        .menu-overlay.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+        .container {
+            width: 95%;
+            padding: 10px;
+        }
+        
+        .step-content {
+            max-width: 100%;
+            padding: 0 5px;
+        }
+        
+        .tabcontent {
+            padding: 15px 5px;
+        }
+        
+        .step-card {
+            padding: 15px;
+            margin-left: -5px;
+            margin-right: -5px;
+            width: calc(100% + 10px);
+        }
+        
+        .method-content,
+        .tabcontent,
+        .support-section {
+            margin-left: -5px;
+            margin-right: -5px;
+            width: calc(100% + 10px);
+        }
+        
+        .image-container img,
+        .image-row img {
+            max-width: 100%;
+        }
+        
+        .instruction-grid {
+            margin-left: -5px;
+            margin-right: -5px;
+        }
+        
+        .code-container {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+    </style>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NLFNJN5C"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+    
+    <div class="menu-overlay" id="menuOverlay"></div>
+    
     <header>
         <div class="container">
             <h1>DexMate</h1>
@@ -38,7 +943,7 @@
                 <button class="hamburger" id="hamburger">
                     <i class="fas fa-bars"></i>
                 </button>
-                <ul class="nav-links">
+                <ul class="nav-links" id="navLinks">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="download.html">Download</a></li>
                     <li><a href="setup.html">Setup Guide</a></li>
@@ -53,211 +958,331 @@
     
 
     <main>
-
         <div class="container">
-            <h2>Setup Guide for DexMate</h2>
-            <p class="introduction">Follow these simple steps to get DexMate up and running on your device.</p>
+            <h2>DexMate Setup Guide</h2>
+            <p class="introduction">Get started with DexMate in minutes with our step-by-step guides</p>
 
+            <!-- Platform Tabs -->
             <div class="tab">
-                <button class="tablinks" onclick="openPlatform(event, 'Windows')">Windows</button>
-                <button class="tablinks" onclick="openPlatform(event, 'MacOS')">MacOS</button>
-                <button class="tablinks" onclick="openPlatform(event, 'Linux')">Linux</button>
+                <button class="tablinks active" onclick="openPlatform(event, 'Windows')">
+                    <i class="fab fa-windows"></i> Windows
+                </button>
+                <button class="tablinks" onclick="openPlatform(event, 'MacOS')">
+                    <i class="fab fa-apple"></i> macOS
+                </button>
+                <button class="tablinks" onclick="openPlatform(event, 'Linux')">
+                    <i class="fab fa-linux"></i> Linux
+                </button>
             </div>
 
-            <div id="Windows" class="tabcontent">
-                <h2>Setup Guide for Windows</h2>
-            
-                <div id="step1" class="step">
-                    <h3>Step 1: Download the installation file</h3>
-                    <p>Select your location, measurement units, and operating system from the 
-                        <a href="download.html">download page</a> and download the appropriate installation file for your device.</p>
-                    <a href="Pictures/Windows/Screenshot (39) - (2).jpg" data-lightbox>
-                        <img src="Pictures/Windows/Screenshot (39) - (2).jpg" alt="Download the zip">
-                    </a>
-                    <p>If your browser blocks or questions the download, please follow these steps:</p>
-                    <ul>
-                        <li><strong>Google Chrome:</strong> Look for a message at the top-right corner of the browser window. If it says the download was blocked, click <em>"Download"</em> to continue downloading the file.</li>
-                        <li><strong>Microsoft Edge:</strong> Check the top-right corner of your browser window for a download prompt. Click <em>"More" (three dots)</em> and then <em>"Keep"</em> to proceed with the download. You might be asked again if you trust the page. Click <em>"Show more"</em> and then <em>"Keep anyway"</em>. The file should now download successfully.</li>
-                    </ul>
-                    <p></p>
-                    <p>For additional help, visit our <a href="support.html">Support Page</a>.</p>
-                </div>                               
-            
-                <div id="step2" class="step">
-                    <h3>Step 2: Run installation file</h3>
-                    <p>Once the download is complete, open the file explorer and go to the directory where you downloaded the installation file. Then double-click on it. It's possible that you will get this blue window stating "Windows protected your PC". In this situation, just click more info and then run anyway. Now go through the installation setup (follow the on-screen instructions).</p>
-                    <div class="image-row">
-                        <a href="Pictures/Windows/Screenshot (40).png" data-lightbox>
-                            <img src="Pictures/Windows/Screenshot (40).png" alt="Unzip">
-                        </a>
-                        <a href="Pictures/Windows/Screenshot (41).png" data-lightbox>
-                            <img src="Pictures/Windows/Screenshot (41).png" alt="Unzip">
-                        </a>
-                        <a href="Pictures/Windows/Screenshot (42).png" data-lightbox>
-                            <img src="Pictures/Windows/Screenshot (42).png" alt="Unzip">
-                        </a>
-                        <a href="Pictures/Windows/Screenshot (43).png" data-lightbox>
-                            <img src="Pictures/Windows/Screenshot (43).png" alt="Unzip">
-                        </a>
-                    </div>
+            <!-- Windows Guide -->
+            <div id="Windows" class="tabcontent" style="display:block">
+                <div class="platform-header">
+                    <i class="fab fa-windows fa-2x"></i>
+                    <h2>Windows Setup Guide</h2>
                 </div>
-            
-                <div id="step3" class="step">
-                    <h3>Step 3: Run the app</h3>
-                    <p>When the installation has finished, the app should open automatically. If not, just open it like any other app. Now you need to enter your Dexcom credentials and hit the log-in button. Enjoy easier life with glucose monitoring on your machine!</p>
-                    <a href="Pictures/Windows/Screenshot (44).png" data-lightbox>
-                        <img src="Pictures/Windows/Screenshot (44).png" alt="Shortcut">
-                    </a>
-                </div>
-
-                <div id="step4" class="step">
-                    <h3>*Optional Step: Run on Startup</h3>
-                    <p>If you want DexMate to run automatically when you log in to your PC, follow these steps:</p>
-                    <p>Click the Windows key + R and type “shell:startup”. It will open a folder. Now you should copy the DexMate shortcut from your desktop or wherever you have saved it to this folder. Now the app will start automatically when you log in to your PC.</p>
-                </div>
-            </div>            
-
-            <div id="MacOS" class="tabcontent">
-                <h2>Setup Guide for MacOS</h2>
-                <div id="step1" class="step">
-                    <h3>Step 1: Download the installation file</h3>
-                    <p>Select your location, measurement units, and operating system from the 
-                        <a href="download.html">download page</a> and download the appropriate installation file for your device.</p>
-                    <p>If your browser blocks or questions the download, please follow these steps:</p>
-                    <ul>
-                        <li><strong>Google Chrome:</strong> Look for a message at the top-right corner of the browser window. If it says the download was blocked, click <em>"Download"</em> to continue downloading the file.</li>
-                        <li><strong>Microsoft Edge:</strong> Check the top-right corner of your browser window for a download prompt. Click <em>"More" (three dots)</em> and then <em>"Keep"</em> to proceed with the download. You might be asked again if you trust the page. Click <em>"Show more"</em> and then <em>"Keep anyway"</em>. The file should now download successfully.</li>
-                    </ul>
-                    <p></p>
-                    <p>For additional help, visit our <a href="support.html">Support Page</a>.</p>
-                </div> 
-                <div id="step2" class="step">
-                    <h3>Step 2: Unzip the folder</h3>
-                    <p>Once the download is complete, open Finder and go to the directory where you downloaded the zip file. Then double-click on it to extract the contents. You should see the <code>DexMate.app</code> file along with the license.</p>
-                    <!-- <img src="images/step2.png" alt="unzip"> -->
-                </div>
-                <div id="step3" class="step">
-                    <h3>Step 3: Run the app</h3>
-                    <p>After unzipping the folder, locate <code>DexMate.app</code> (you can see just "DexMate"). Drag and drop the <code>DexMate.app</code> file into your <strong>Applications</strong> folder for easy access. </p>
-                    
-                    <!--<div class="image-row">
-                        <img src="Pictures/Windows/Shortcut1.png" alt="shortcut">
-                        <img src="Pictures/Windows/Shortcut2.png" alt="shortcut">
-                    </div>
-                    <div class="image-row">
-                        <img src="Pictures/Windows/Protected1.png" alt="protected">
-                        <img src="Pictures/Windows/Protected2.png" alt="protected">
-                    </div>
-                    <div class="image-row">
-                        <img src="Pictures/Windows/Running1.png" alt="running">
-                        <img src="Pictures/Windows/Running2.png" alt="running">
-                    </div> -->
-
-                    <div id="step4" class="step">
-                        <h3>Step 4: Launch the App</h3>
-                        <p>Open the <strong>Terminal</strong> application on your Mac. Then, paste the following commands one by one into the Terminal:</p>
-                        <div class="code-container">
-                            <pre>
-                                <code>
-                                    <ul>
-                                        <code>sudo chown -R $USER /Applications/DexMate.app</code>
-                                        <code>sudo chmod -R 755 /Applications/DexMate.app</code>
-                                        <code>sudo xattr -rd com.apple.quarantine /Applications/DexMate.app</code>
-                                    </ul>
-                                </code>
-                            </pre>
-                            <button class="copy-button" onclick="copyToClipboard()">Copy</button>
+                
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Download the Installer</h3>
+                        <p>Get the DexMate installer for Windows from our 
+                            <a href="download.html">download page</a>.</p>
+                        
+                        <div class="image-container">
+                            <img src="./Pictures/Windows/download_win.png" alt="Windows download" class="enlargeable">
                         </div>
-                        <p>If prompted for your password, type it in and press <strong>Enter</strong>. This ensures the security of the changes.</p>
-                        <p><strong>Important:</strong> Please double-check the commands before running them. We do not take any responsibility for issues caused by incorrectly typed commands or unintended changes to your system.</p>
-                        <p>Once you've completed these steps, you can close the Terminal window.</p>
-                    
-                        <h4>Launching DexMate</h4>
-                        <p>To run DexMate:</p>
-                        <ul>
-                            <li>Open the <strong>Applications</strong> folder.</li>
-                            <li>Locate <code>DexMate.app</code> and double-click it to launch.</li>
-                        </ul>
-                        <p>If you receive a warning about the app being from an "unidentified developer," follow these steps:</p>
-                        <ol>
-                            <li>Right-click (or Control-click) on <code>DexMate.app</code>.</li>
-                            <li>Select <strong>Open</strong> from the context menu.</li>
-                            <li>In the warning message that appears, click <strong>Open</strong> again to confirm.</li>
-                        </ol>
-                        <p>After confirming, the app will launch normally, and you won’t see this warning again.</p>
-                        <p>Enjoy using DexMate!</p>
-                    </div>                    
+                        
+                        <div class="tip-box">
+                            <i class="fas fa-lightbulb"></i>
+                            <div>
+                                <p><strong>If your browser blocks the download:</strong></p>
+                                <ul>
+                                    <li>Chrome: Click "Keep" in the download warning</li>
+                                    <li>Edge: Click "Keep anyway" in the prompt</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Run the Installer</h3>
+                        <p>Double-click the downloaded .exe file and follow these steps:</p>
+                        
+                        <div class="instruction-grid">
+                            <div class="instruction-step">
+                                <div class="step-icon">1</div>
+                                <p>If you see "Windows protected your PC", click <strong>More info</strong></p>
+                            </div>
+                            <div class="instruction-step">
+                                <div class="step-icon">2</div>
+                                <p>Click <strong>Run anyway</strong></p>
+                            </div>
+                            <div class="instruction-step">
+                                <div class="step-icon">3</div>
+                                <p>Follow the on-screen instructions</p>
+                            </div>
+                        </div>
+                        
+                        <div class="image-row">
+                            <div class="image-container">
+                                <img src="./Pictures/Windows/Protected1.png" alt="Security warning" class="enlargeable">
+                            </div>
+                            <div class="image-container">
+                                <img src="./Pictures/Windows/Screenshot (43).png" alt="Installation" class="enlargeable">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Launch and Log In</h3>
+                            <p>
+                            After installation, DexMate will launch automatically and prompt you to configure your data source. 
+                            You can choose between <strong>Dexcom</strong> and <strong>Nightscout</strong>:
+                            </p>
+                            <ul>
+                            <li><strong>Dexcom:</strong> Enter your Dexcom username, password, and select your region (US, OUS, or Japan).</li>
+                            <li><strong>Nightscout:</strong> Provide your Nightscout URL and API Secret if required.</li>
+                            </ul>
+                            <p>
+                            Once your preferred source is set up, click <strong>Save Configuration</strong> to begin monitoring your glucose data.
+                            </p>
+                        <div class="image-row">
+                            <div class="image-container">
+                                <img src="./Pictures/Windows/login_default.png" alt="Login screen" class="enlargeable">
+                            </div>
+                            <div class="image-container">
+                                <img src="./Pictures/Windows/login_dexcom-share (1).png" alt="Login screen - dexcom source" class="enlargeable">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-card optional">
+                    <div class="step-number"><i class="fas fa-cog"></i></div>
+                    <div class="step-content">
+                        <h3>Optional: Run on Startup</h3>
+                        <p>To launch DexMate automatically when you start your computer:</p>
+                        
+                        <div class="instruction-grid">
+                            <div class="instruction-step">
+                                <div class="step-icon">1</div>
+                                <p>Press <kbd>Win</kbd> + <kbd>R</kbd>, type <code>shell:startup</code></p>
+                            </div>
+                            <div class="instruction-step">
+                                <div class="step-icon">2</div>
+                                <p>Copy the DexMate shortcut to this folder</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
+             <!-- macOS Guide -->
+            <div id="MacOS" class="tabcontent">
+                <div class="platform-header">
+                    <i class="fab fa-apple fa-2x"></i>
+                    <h2>macOS Setup Guide</h2>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Download the Installer</h3>
+                        <p>Download the DexMate.dmg file from our 
+                            <a href="download.html">download page</a>.</p>
+                        <div class="tip-box">
+                            <i class="fas fa-lightbulb"></i>
+                            <p>If your browser blocks the download, click "Keep" in the warning message</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Install the Application</h3>
+                        <p>Double-click the downloaded .dmg file and drag DexMate.app to your Applications folder.</p>
+                        <!-- <img src="https://via.placeholder.com/600x400?text=Drag+to+Applications" alt="Drag to Applications" class="enlargeable"> -->
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Launch the Application</h3>
+                        <p>Open your Applications folder and double-click DexMate.app. If you see a security warning:</p>
+                        
+                        <!-- New macOS Security Instructions -->
+                        <div class="macos-security">
+                            <h4><i class="fas fa-shield-alt"></i> Allowing DexMate to Run</h4>
+                            <p>If macOS prevents DexMate from opening, use this method:</p>
+                            <div class="security-steps">
+                                <div class="security-step">
+                                    <div class="security-step-number">1</div>
+                                    <div>
+                                        <h5>System Settings Method</h5>
+                                        <ol>
+                                            <li>Go to <strong>System Settings</strong> &gt; <strong>Privacy & Security</strong></li>
+                                            <li>Scroll to the Security section</li>
+                                            <li>Find the message: "DexMate was blocked..."</li>
+                                            <li>Click <strong>Allow Anyway</strong></li>
+                                            <li>Try opening DexMate again</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>
+                            DexMate will now launch and prompt you to configure your data source. 
+                            You can choose between <strong>Dexcom</strong> and <strong>Nightscout</strong>:
+                        </p>
+                            <ul>
+                            <li><strong>Dexcom:</strong> Enter your Dexcom username, password, and select your region (US, OUS, or Japan).</li>
+                            <li><strong>Nightscout:</strong> Provide your Nightscout URL and API Secret if required.</li>
+                            </ul>
+                        <p>
+                            Once your preferred source is set up, click <strong>Save Configuration</strong> to begin monitoring your glucose data.
+                        </p>
+                        <!-- <div class="security-images">
+                            <img src="https://via.placeholder.com/300x200?text=Security+Warning" alt="macOS security warning" class="enlargeable">
+                            <img src="https://via.placeholder.com/300x200?text=Privacy+Settings" alt="Privacy & Security settings" class="enlargeable">
+                            <img src="https://via.placeholder.com/300x200?text=Allow+Anyway" alt="Allow Anyway button" class="enlargeable">
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Linux Guide -->
             <div id="Linux" class="tabcontent">
-                <h2>Setup Guide for Linux</h2>
-                <div id="step1" class="step">
-                    <h3>Step 1: Download the installation file</h3>
-                    <p>Select your location, measurement units, and operating system from the 
-                        <a href="download.html">download page</a> and download the appropriate installation file for your device.</p>
-                    <a href="Pictures/Linux/Download_lin(2).png" data-lightbox>
-                        <img src="Pictures/Linux/Download_lin(2).png" alt="Download the zip">
-                    </a>
-                    <p>If your browser blocks or questions the download, please follow these steps:</p>
-                    <ul>
-                        <li><strong>Google Chrome:</strong> Look for a message at the top-right corner of the browser window. If it says the download was blocked, click <em>"Download"</em> to continue downloading the file.</li>
-                        <li><strong>Microsoft Edge:</strong> Check the top-right corner of your browser window for a download prompt. Click <em>"More" (three dots)</em> and then <em>"Keep"</em> to proceed with the download. You might be asked again if you trust the page. Click <em>"Show more"</em> and then <em>"Keep anyway"</em>. The file should now download successfully.</li>
-                    </ul>
-                    <p></p>
-                    <p>For additional help, visit our <a href="support.html">Support Page</a>.</p>
-                </div> 
-                <div id="step2" class="step">
-                    <h3>Step 2: Unzip the folder</h3>
-                    <p>Once the download is complete, open your file manager and go to the directory where you downloaded the zip. Then right-click on it and select "Extract Here".</p>
-                    <a href="Pictures/Linux/Unzip.png" data-lightbox>
-                        <img src="Pictures/Linux/Unzip.png" alt="Unzipping the file">
-                    </a>
+                <div class="platform-header">
+                    <i class="fab fa-linux fa-2x"></i>
+                    <h2>Linux Setup Guide</h2>
                 </div>
-                <div id="step3" class="step">
-                    <h3>Step 3: Run the app</h3>
-                    <p>After unzipping the folder, open the extracted DexMate folder and locate the DexMate file. Right-click on the file and select Properties. In the Properties window, navigate to the Permissions tab. Ensure that all permissions are set to Read and Write and that the option to Allow executing file as a program is enabled.</p>
-
-                    <p>Once you've made these changes, click Save (if required) or simply close the Properties window. You can now double-click on the DexMate file to run the application.</p>
-                    
-                    <div class="image-row">
-                        <a href="Pictures/Linux/Properties1.png" data-lightbox>
-                            <img src="Pictures/Linux/Properties1.png" alt="Properties Screenshot 1">
-                        </a>
-                        <a href="Pictures/Linux/Properties2.png" data-lightbox>
-                            <img src="Pictures/Linux/Properties2.png" alt="Properties Screenshot 2">
-                        </a>
-                    </div>
-                    <div class="image-row">
-                        <a href="Pictures/Linux/Permissions1.png" data-lightbox>
-                            <img src="Pictures/Linux/Permissions1.png" alt="Permissions Screenshot 1">
-                        </a>
-                        <a href="Pictures/Linux/Permissions2.png" data-lightbox>
-                            <img src="Pictures/Linux/Permissions2.png" alt="Permissions Screenshot 2">
-                        </a>
-                    </div>
-                    <a href="Pictures/Linux/Running(2).jpg" data-lightbox>
-                        <img src="Pictures/Linux/Running(2).jpg" alt="Running the App">
-                    </a>
+                <div class="method-selector">
+                    <button class="method-btn active" data-method="snap">
+                        <i class="fab fa-snapcraft"></i> Snap Store
+                    </button>
+                    <button class="method-btn" data-method="zip">
+                        <i class="fas fa-file-archive"></i> ZIP File
+                    </button>
                 </div>
-                <div id="step4" class="step">
-                    <h3>*Optional Step: Run on Startup</h3>
-                    <p>If you want DexMate to run automatically when you log in to your PC, follow these steps:</p>
-                    <p>Open terminal and run this command: <code>sudo apt install gnome-startup-applications</code></p>
-                    <p>Then find the startup application preferences app and open it.</p>
-                    <p>Click the “Add” button and enter a desired name. In the command section, select "Browse...," navigate to the unzipped folder, and choose the DexMate file. Optionally, add a comment, then click “Add” to complete the process.</p>
-                    <p>Now you can close the application. The app should run automatically when started and logged in to the PC.</p>
+                <!-- Snap Installation Method -->
+                <div id="snap-method" class="method-content">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Install via Snap</h3>
+                            <p>Open your terminal and run:</p>
+                            <div class="code-container">
+                                <pre><code>sudo snap install dexmate</code></pre>
+                                <button class="copy-button">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Launch DexMate</h3>
+                            <p>You can find DexMate in your application menu or run:</p>
+                            <div class="code-container">
+                                <pre><code>dexmate</code></pre>
+                                <button class="copy-button">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Log In</h3>
+                            <p>Enter your Dexcom credentials when prompted.</p>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number"><i class="fas fa-sync-alt"></i></div>
+                        <div class="step-content">
+                            <h3>Automatic Updates</h3>
+                            <p>Snap installations update automatically. To manually update:</p>
+                            <div class="code-container">
+                                <pre><code>sudo snap refresh dexmate</code></pre>
+                                <button class="copy-button">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ZIP Installation Method -->
+                <div id="zip-method" class="method-content" style="display:none">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Download the ZIP</h3>
+                            <p>Download the Linux ZIP file from our 
+                                <a href="download.html">download page</a>.</p>
+                            <img src="./Pictures/Linux/Download_lin.png" alt="Download ZIP" class="enlargeable">
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Extract Files</h3>
+                            <p>Right-click the downloaded ZIP file and select "Extract Here".</p>
+                            <img src="./Pictures/Linux/Unzip.png" alt="Extract files" class="enlargeable">
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Make Executable</h3>
+                            <p>Right-click the DexMate file → Properties → Permissions → Check "Allow executing file as program".</p>
+                            <img src="./Pictures/Linux/execute.png" alt="Set permissions" class="enlargeable">
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Launch and Log In</h3>
+                                <p>
+                                After installation, double-click the DexMate file to launch it. DexMate will launch and prompt you to configure your data source. 
+                                You can choose between <strong>Dexcom</strong> and <strong>Nightscout</strong>:
+                                </p>
+                                <ul>
+                                <li><strong>Dexcom:</strong> Enter your Dexcom username, password, and select your region (US, OUS, or Japan).</li>
+                                <li><strong>Nightscout:</strong> Provide your Nightscout URL and API Secret if required.</li>
+                                </ul>
+                                <p>
+                                Once your preferred source is set up, click <strong>Save Configuration</strong> to begin monitoring your glucose data.
+                                </p>
+                            <img src="./Pictures/Linux/login.png" alt="Running app (login window)" class="enlargeable">
+                        </div>
+                    </div>
+                    <div class="step-card optional">
+                        <div class="step-number"><i class="fas fa-cog"></i></div>
+                        <div class="step-content">
+                            <h3>Optional: Run on Startup</h3>
+                            <p>To launch on login:</p>
+                            <ol>
+                                <li>Install Startup Applications: 
+                                    <div class="code-container">
+                                        <pre><code>sudo apt install gnome-startup-applications</code></pre>
+                                        <button class="copy-button">Copy</button>
+                                    </div>
+                                </li>
+                                <li>Open Startup Applications Preferences</li>
+                                <li>Click Add, name it "DexMate"</li>
+                                <li>Browse to the DexMate file</li>
+                                <li>Click Add</li>
+                            </ol>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            <!-- Lightbox container -->
-            <div class="lightbox" id="lightbox">
-                <span class="close" id="lightboxClose">&times;</span>
-                <img id="lightboxImage" src="" alt="Popup Image">
-            </div>
-
-            <div class="footer">
-                <p>Need help? Visit our <a href="support.html">Support Page</a> or contact us at <a href="mailto:dexmate.contact@gmail.com">dexmate.contact@gmail.com</a>. You can also check out our <a href="index.html#q&a_section">FAQs section</a> on the bottom of homepage.</p>
+            <div class="support-section">
+                <h3><i class="fas fa-question-circle"></i> Need Help?</h3>
+                <p>Visit our <a href="support.html">Support Page</a> or contact us at 
+                    <a href="mailto:dexmate.contact@gmail.com">dexmate.contact@gmail.com</a>.</p>
             </div>
         </div>
     </main>
@@ -273,8 +1298,8 @@
                     <li><a href="developers.html">Developers</a></li>
                     <li><a href="support.html">Support</a></li>
                     <li><a href="license.html">License</a></li>
-                    <li><a href="privacy.html">Privacy Policy</a></li> <!-- New Link -->
-                    <li><a href="terms.html">Terms & Conditions</a></li> <!-- New Link -->
+                    <li><a href="license.html">Privacy Policy</a></li>
+                    <li><a href="license.html">Terms & Conditions</a></li>
                     <li><a href="about.html">About</a></li>
                 </ul>
             </div>
@@ -282,16 +1307,18 @@
                 <a href="#"><i class="fab fa-youtube"></i></a>
                 <a href="https://www.facebook.com/share/19aJANhniV/?mibextid=wwXIfr"><i class="fab fa-facebook"></i></a>
                 <a href="https://www.instagram.com/dexmate_widget/profilecard/?igsh=c2J2dWJnNnZ6Mndp"><i class="fab fa-instagram"></i></a>
+                <a href="https://discord.gg/fZxrHAtDsh" target="_blank"><i class="fab fa-discord"></i></a>
             </div>
             <div class="footer-bottom">
                 <p>Copyright &copy; 2024; Designed by <span class="designer">rpimaster</span></p>
                 <p>This project is licensed under the MIT License - see the <a href="license.html">LICENSE</a> file for details.</p>
-                <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms & Conditions</a></p> <!-- Additional Line -->
+                <p><a href="license.html">Privacy Policy</a> | <a href="license.html">Terms & Conditions</a></p>
             </div>
         </div>
     </footer>    
 
     <script>
+        // Platform tabs functionality
         function openPlatform(evt, platformName) {
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("tabcontent");
@@ -305,76 +1332,158 @@
             document.getElementById(platformName).style.display = "block";
             evt.currentTarget.className += " active";
         }
-    </script>
-    <script>
-        document.querySelector('#hamburger').addEventListener('click', function() {
-            document.querySelector('ul.nav-links').classList.toggle('nav-active');
-        });
-    </script>
-    <script>
-        // Select lightbox elements
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImage = document.getElementById('lightboxImage');
-        const lightboxClose = document.getElementById('lightboxClose');
+        
+        // Hamburger menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+            const menuOverlay = document.getElementById('menuOverlay');
+            const hamburgerIcon = hamburger.querySelector('i');
 
-        // Add click event listener for all images with data-lightbox
-        document.querySelectorAll('[data-lightbox]').forEach(link => {
-            link.addEventListener('click', function (e) {
-                e.preventDefault(); // Prevent default link action
-                const imgSrc = this.getAttribute('href');
-                lightboxImage.src = imgSrc; // Set image source
-                lightbox.style.display = 'flex'; // Show lightbox
+            hamburger.addEventListener('click', function() {
+                navLinks.classList.toggle('nav-active');
+                menuOverlay.classList.toggle('active');
+                document.body.classList.toggle('menu-open');
+                
+                // Toggle hamburger icon
+                if (navLinks.classList.contains('nav-active')) {
+                    hamburgerIcon.classList.remove('fa-bars');
+                    hamburgerIcon.classList.add('fa-times');
+                } else {
+                    hamburgerIcon.classList.remove('fa-times');
+                    hamburgerIcon.classList.add('fa-bars');
+                }
             });
-        });
 
-        // Close lightbox
-        lightboxClose.addEventListener('click', () => {
-            lightbox.style.display = 'none';
-        });
+            // Close menu when clicking overlay
+            menuOverlay.addEventListener('click', function() {
+                navLinks.classList.remove('nav-active');
+                menuOverlay.classList.remove('active');
+                hamburgerIcon.classList.remove('fa-times');
+                hamburgerIcon.classList.add('fa-bars');
+                document.body.classList.remove('menu-open');
+            });
 
-        // Close lightbox when clicking outside the image
-        lightbox.addEventListener('click', (e) => {
-            if (e.target !== lightboxImage) {
-                lightbox.style.display = 'none';
-            }
-        });
-
-        document.addEventListener("DOMContentLoaded", () => {
-            const copyButtons = document.querySelectorAll('.copy-button');
-
-            copyButtons.forEach(button => {
-                button.addEventListener('click', (e) => {
-                    const codeContent = e.target.closest('.code-container').querySelector('pre').textContent;
-                    
-                    // Fallback for browsers that don't support Clipboard API
-                    const textarea = document.createElement('textarea');
-                    textarea.value = codeContent;
-                    document.body.appendChild(textarea);
-                    textarea.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(textarea);
-
-                    // Update button text to "Copied!"
-                    button.textContent = "Copied!";
-                    setTimeout(() => {
-                        button.textContent = "Copy";
-                    }, 2000);
+            // Close menu when clicking a link
+            const navItems = document.querySelectorAll('#navLinks a');
+            navItems.forEach(function(item) {
+                item.addEventListener('click', function() {
+                    navLinks.classList.remove('nav-active');
+                    menuOverlay.classList.remove('active');
+                    hamburgerIcon.classList.remove('fa-times');
+                    hamburgerIcon.classList.add('fa-bars');
+                    document.body.classList.remove('menu-open');
                 });
             });
         });
+        
+        // Linux method switching
+        document.querySelectorAll('.method-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Update active button
+                document.querySelectorAll('.method-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // Show selected method
+                const method = this.getAttribute('data-method');
+                document.querySelectorAll('.method-content').forEach(content => {
+                    content.style.display = 'none';
+                });
+                document.getElementById(`${method}-method`).style.display = 'block';
+            });
+        });
+        
+        // Copy button functionality
+        document.querySelectorAll('.copy-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const code = this.previousElementSibling.textContent;
+                const originalText = this.textContent;
+
+                // Create a temporary textarea for iOS compatibility
+                const textArea = document.createElement('textarea');
+                textArea.value = code;
+                textArea.style.position = 'fixed';
+                textArea.style.top = '0';
+                textArea.style.left = '0';
+                textArea.style.width = '2em';
+                textArea.style.height = '2em';
+                textArea.style.padding = '0';
+                textArea.style.border = 'none';
+                textArea.style.outline = 'none';
+                textArea.style.boxShadow = 'none';
+                textArea.style.background = 'transparent';
+
+                document.body.appendChild(textArea);
+                textArea.select();
+
+                try {
+                    // Try using modern Clipboard API first
+                    if (navigator.clipboard) {
+                        navigator.clipboard.writeText(code).then(() => {
+                            showCopiedFeedback(this, originalText);
+                        }).catch(err => {
+                            // Fallback to execCommand for browsers that don't support Clipboard API
+                            document.execCommand('copy');
+                            showCopiedFeedback(this, originalText);
+                        });
+                    } else {
+                        // Fallback for older browsers
+                        document.execCommand('copy');
+                        showCopiedFeedback(this, originalText);
+                    }
+                } catch (err) {
+                    console.error('Copy failed:', err);
+                } finally {
+                    document.body.removeChild(textArea);
+                }
+            });
+        });
+
+        function showCopiedFeedback(button, originalText) {
+            button.textContent = 'Copied!';
+            setTimeout(() => {
+                button.textContent = originalText;
+            }, 2000);
+        }
+        
+        // Lightbox functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const lightbox = document.createElement('div');
+            lightbox.id = 'lightbox';
+            lightbox.className = 'lightbox';
+            lightbox.style.display = 'none';
+            lightbox.innerHTML = `
+                <span class="close" id="lightboxClose">&times;</span>
+                <img id="lightboxImage" src="" alt="Enlarged image">
+            `;
+            document.body.appendChild(lightbox);
+            
+            const lightboxImage = document.getElementById('lightboxImage');
+            const lightboxClose = document.getElementById('lightboxClose');
+
+            // Make all images with .enlargeable open in lightbox
+            document.querySelectorAll('img.enlargeable').forEach(img => {
+                img.style.cursor = 'zoom-in';
+                img.addEventListener('click', function() {
+                    lightboxImage.src = this.src;
+                    lightbox.style.display = 'flex';
+                });
+            });
+
+            // Close lightbox on close button or overlay click
+            lightboxClose.addEventListener('click', () => {
+                lightbox.style.display = 'none';
+                lightboxImage.src = '';
+            });
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    lightbox.style.display = 'none';
+                    lightboxImage.src = '';
+                }
+            });
+        });
     </script>
-    <script type="text/javascript">
-        (function(d, t) {
-            var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-            v.onload = function() {
-              window.voiceflow.chat.load({
-                verify: { projectID: '6794e37192c4506f06165a7a' },
-                url: 'https://general-runtime.voiceflow.com',
-                versionID: 'production'
-              });
-            }
-            v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
-        })(document, 'script');
-      </script>    
 </body>
 </html>
