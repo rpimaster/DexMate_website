@@ -1,10 +1,10 @@
 # DexMate Website
 
-Source code for the official DexMate website (HTML, CSS, JavaScript).
+Source code for the official DexMate website, built with HTML, CSS, and JavaScript.
 
-DexMate is a lightweight desktop widget for Dexcom users, supporting Windows, macOS, and Linux.
+DexMate is a lightweight desktop widget for Dexcom users on Windows, macOS, and Linux.
 
-The website provides downloads, installation guides, documentation, and product information.
+This website provides product information, downloads, installation guides, and documentation.
 
 ## Features
 - Responsive design for desktop and mobile
