@@ -14,7 +14,3 @@ The website provides downloads, installation guides, documentation, and product 
 
 ## Live Site
 [dex-mate.com](https://dex-mate.com/)
-
-## Maintainer
-Damián Januch  
-[@rpimaster](https://github.com/rpimaster)
