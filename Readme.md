@@ -1,15 +1,20 @@
 # DexMate Website
 
-This repository contains the source code for the official DexMate website. DexMate is a lightweight desktop widget for Dexcom users, supporting Windows, macOS, and Linux.
+Source code for the official DexMate website (HTML, CSS, JavaScript).
 
-The website provides information about DexMate and serves as a hub for downloads, installation guides, and documentation.
+DexMate is a lightweight desktop widget for Dexcom users, supporting Windows, macOS, and Linux.
 
----
+The website provides downloads, installation guides, documentation, and product information.
 
-## 🌟 Features
+## Features
+- Responsive design for desktop and mobile
+- Download links for all platforms
+- Installation guides and documentation
+- Product information and developer resources
 
-- **Responsive Design**: Optimized for both desktop and mobile devices.
-- **Download Links**: Direct access to the latest DexMate releases for all platforms.
-- **Documentation**: Installation guides and FAQs for easy setup.
+## Live Site
+[dex-mate.com](https://dex-mate.com/)
 
----
+## Maintainer
+Damián Januch  
+[@rpimaster](https://github.com/rpimaster)
